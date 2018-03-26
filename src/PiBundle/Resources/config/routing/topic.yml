@@ -1,0 +1,24 @@
+topic_index:
+    path:     /
+    defaults: { _controller: "PiBundle:Topic:index" }
+    methods:  GET
+
+topic_show:
+    path:     /{id}/show
+    defaults: { _controller: "PiBundle:Topic:show" }
+    methods:  GET
+
+topic_new:
+    path:     /new
+    defaults: { _controller: "PiBundle:Topic:new" }
+    methods:  [GET, POST]
+
+topic_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PiBundle:Topic:edit" }
+    methods:  [GET, POST]
+
+topic_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PiBundle:Topic:delete" }
+    methods:  DELETE

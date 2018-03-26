@@ -29,3 +29,11 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+forum:
+    resource: "@PiBundle/Resources/config/forum.yml"
+    prefix:   /forum
+
+topic:
+    resource: "@PiBundle/Resources/config/routing/topic.yml"
+    prefix:   /topic

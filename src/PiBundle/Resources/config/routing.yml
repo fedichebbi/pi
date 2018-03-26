@@ -1,3 +1,7 @@
+pi_topic:
+    resource: "@PiBundle/Resources/config/routing/topic.yml"
+    prefix:   /topic
+
 pi_homepage:
     path:     /
     defaults: { _controller: PiBundle:Default:index }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Topics list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Contenu</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for topic in topics %}
+            <tr>
+                <td><a href="{{ path('topic_show', { 'id': topic.id }) }}">{{ topic.id }}</a></td>
+                <td>{{ topic.titre }}</td>
+                <td>{{ topic.type }}</td>
+                <td>{{ topic.contenu }}</td>
+                <td>{% if topic.date %}{{ topic.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('topic_show', { 'id': topic.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('topic_edit', { 'id': topic.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('topic_new') }}">Create a new topic</a>
+        </li>
+    </ul>
+{% endblock %}
