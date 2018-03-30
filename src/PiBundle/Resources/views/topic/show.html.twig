@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for c in commentaires %}
+    {{ c.idUser }}
+    {% endfor %}
+
+    <ul>
+        <li>
+            <a href="{{ path('topic_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('topic_edit', { 'id': topic.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    <div class="section-blog-photo-intro">
+        <div class="opacity-layer section section-blog-photo-intro-height">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SECTION MAIN -->
+    <!--===============================================================-->
+    <div class="container">
+        <div class="row row-wrapper-posts-intro">
+            <!-- GRID POSTS -->
+            <!--===============================================================-->
+            <div class="col-md-8 col-md-offset-2 grid-posts grid-posts-intro">
+                <!-- POST -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="wrapper-post-v1">
+                            <div class="wrapper-post-text text-theme-lg">
+                                <h3 class="title-xl text-uppercase text-theme-lg"><a href="#">{{ topic.titre }}</a></h3>
+                                {% if topic.idUser==user %}
+                                    <a href="{{ path('topic_edit', { 'id': topic.id }) }}">Edit</a>
+                                {% endif %}
+                                <ul class="list-unstyled list-inline post-date-author text-theme-lg">
+                                    <li>
+                                        <a href="#"><i class="fa fa-comment-o"></i>{{ topic.idUser }}</a>
+                                    </li>
+                                    <li>
+                                        <a class="link-colored" href="#"><i class="fa fa-tag"></i>{{ topic.type }}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-calendar"></i>{% if topic.date %}{{ topic.date|date('Y-m-d H:i:s') }}{% endif %}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p>
+                                {{ topic.contenu }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- COMMENTS -->
+                <div class="media-blog">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="title-md hr-left mb-40">Commentaires</h3>
+                            {% for c in commentaires %}
+                            <div class="media">
+                                <a class="media-left" href="#">
+                                    <img alt="64x64" src="assets/images/placeholder/64x64.gif" class=""> </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{ c.idUser }}</h4>
+                                    <ul class="list-unstyled list-inline post-date-author">
+                                        <li>
+                                            <a href="#" class="user-by">{{ c.idUser }}</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Sept 18, 2014</a>
+                                        </li>
+                                    </ul>
+                                    {{ c.contenu }}
+                                    <a class="display-block" href="#"><small><i class="fa fa-reply mr-8"></i>Reply</small>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="media-blog">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="title-md hr-left mb-40">Leave a Comment</h3>
+                            <form>
+                                <label>Name</label>
+                                <div class="row mb-20">
+                                    <div class="col-md-7 col-md-offset-0">
+                                        <input type="text" class="form-control"> </div>
+                                </div>
+                                <label>Email
+                                    <span class="colored">*</span>
+                                </label>
+                                <div class="row mb-20">
+                                    <div class="col-md-7 col-md-offset-0">
+                                        <input type="text" class="form-control"> </div>
+                                </div>
+                                <label>Message</label>
+                                <div class="row mb-20">
+                                    <div class="col-md-11 col-md-offset-0">
+                                        <textarea class="form-control" rows="8"></textarea>
+                                    </div>
+                                </div>
+                                <p>
+                                    <button class="btn btn-primary" type="submit">Send Message</button>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

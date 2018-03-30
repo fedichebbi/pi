@@ -10,7 +10,7 @@ topic_show:
 
 topic_new:
     path:     /new
-    defaults: { _controller: "PiBundle:Topic:new" }
+    defaults: { _controller: "PiBundle:Topic:ajouter" }
     methods:  [GET, POST]
 
 topic_edit:

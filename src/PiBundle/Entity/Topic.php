@@ -53,7 +53,6 @@ class Topic
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\Column(type="integer")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      * })

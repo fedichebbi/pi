@@ -5,29 +5,34 @@ namespace PiBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Commentaire
+ * Reclamation
  *
- * @ORM\Table(name="commentaire", indexes={@ORM\Index(name="id_user", columns={"id_user"}), @ORM\Index(name="id_topic", columns={"id_topic"})})
- * @ORM\Entity(repositoryClass="PiBundle\Repository\CommentaireRepository")
+ * @ORM\Table(name="reclamation")
+ * @ORM\Entity(repositoryClass="PiBundle\Repository\ReclamationRepository")
  */
-class Commentaire
+class Reclamation
 {
     /**
-     * @var integer
+     * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    private $date;
+    /**
      * @var string
      *
-     * @ORM\Column(name="contenu", type="string", length=100, nullable=true)
+     * @ORM\Column(name="contenu", type="string", length=300, nullable=false)
      */
     private $contenu;
-
     /**
      * @var \Topic
      *
@@ -49,6 +54,8 @@ class Commentaire
     private $idUser;
 
     /**
+     * Get id
+     *
      * @return int
      */
     public function getId()
@@ -57,11 +64,27 @@ class Commentaire
     }
 
     /**
-     * @param int $id
+     * Set date
+     *
+     * @param string $date
+     *
+     * @return Reclamation
      */
-    public function setId($id)
+    public function setDate($date)
     {
-        $this->id = $id;
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return string
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 
     /**
@@ -111,7 +134,6 @@ class Commentaire
     {
         $this->idUser = $idUser;
     }
-
 
 }
 
