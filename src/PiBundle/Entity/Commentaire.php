@@ -30,7 +30,7 @@ class Commentaire
 
     /**
      * @var \Topic
-     *
+     * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity="Topic")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_topic", referencedColumnName="id")

@@ -2,6 +2,7 @@
 
 namespace PiBundle\Controller;
 
+use PiBundle\Entity\Commentaire;
 use PiBundle\Entity\Topic;
 use PiBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -138,13 +139,33 @@ class TopicController extends Controller
             $Topic->setContenu($request->get("contenu"));
             $Topic->setType($request->get("type"));
             $Topic->setDate(new \DateTime(date('Y-m-d H:i:s')));
-            $Topic->setIdUser($user->getId());
+            $Topic->setIdUser($user);
             $EM = $this->getDoctrine()->getManager();
             $EM->persist($Topic);
             $EM->flush();
             return $this->redirectToRoute('topic_index');
         }
         return $this->render('PiBundle:topic:new.html.twig', array(
+
+        ));
+    }
+    public function addCommentAction(Request $request)
+    {
+        $Commentaire= new Commentaire();
+        $user = new User();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if($request->isMethod("post")) {
+            $Commentaire->setContenu($request->get("contenu"));
+            $Commentaire->setIdTopic($request->get("topic"));
+            $Commentaire->setIdUser($user);
+            $EM = $this->getDoctrine()->getManager();
+            $EM->persist($Commentaire);
+            $EM->flush();
+            return $this->redirectToRoute('topic_show',array(
+                "id"=>$Commentaire->getIdTopic($request->get("topic"))
+            ));
+        }
+        return $this->render('PiBundle:topic:index.html.twig', array(
 
         ));
     }

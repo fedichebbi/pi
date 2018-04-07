@@ -22,3 +22,8 @@ topic_delete:
     path:     /{id}/delete
     defaults: { _controller: "PiBundle:Topic:delete" }
     methods:  DELETE
+
+topic_new_comm:
+    path:     /addcomm
+    defaults: { _controller: "PiBundle:Topic:addComment" }
+    methods:  [GET, POST]

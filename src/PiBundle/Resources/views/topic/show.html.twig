@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <link rel="stylesheet" type="text/css" href={{ asset("ckeditor/ckeditor/content.css") }}>
     {% for c in commentaires %}
     {{ c.idUser }}
     {% endfor %}
@@ -57,7 +58,7 @@
                                 </ul>
                             </div>
                             <p>
-                                {{ topic.contenu }}
+                              {{ topic.contenu|raw }}
                             </p>
                         </div>
                     </div>
@@ -94,23 +95,12 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <h3 class="title-md hr-left mb-40">Leave a Comment</h3>
-                            <form>
-                                <label>Name</label>
-                                <div class="row mb-20">
-                                    <div class="col-md-7 col-md-offset-0">
-                                        <input type="text" class="form-control"> </div>
-                                </div>
-                                <label>Email
-                                    <span class="colored">*</span>
-                                </label>
-                                <div class="row mb-20">
-                                    <div class="col-md-7 col-md-offset-0">
-                                        <input type="text" class="form-control"> </div>
-                                </div>
-                                <label>Message</label>
+                            <form method="post" action="{{ path('topic_new_comm') }}">
+                                <label>Commentaire</label>
                                 <div class="row mb-20">
                                     <div class="col-md-11 col-md-offset-0">
-                                        <textarea class="form-control" rows="8"></textarea>
+                                        <textarea class="form-control" rows="8" name="contenu"></textarea>
+                                        <input name="topic" value="{{ topic.id }}" hidden>
                                     </div>
                                 </div>
                                 <p>

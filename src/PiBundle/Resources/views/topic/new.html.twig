@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    <script src="{{ asset("ckeditor/ckeditor/ckeditor.js") }}"></script>
     <ul>
         <li>
             <a href="{{ path('topic_index') }}">Back to the list</a>
@@ -21,7 +22,7 @@
                 </div>
                 <div>
                     <label for="inputEmail">Contenu</label>
-                    <textarea class="form-control" id="contenu" name="contenu"></textarea>
+                    <textarea class="ckeditor" id="contenu" name="contenu"></textarea>
                 </div>
                 <br/>
                 <button type="submit" class="btn btn-primary">Submit</button>

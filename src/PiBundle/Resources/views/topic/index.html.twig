@@ -43,28 +43,18 @@
         </li>
     </ul>
 
-    <div class="container container-timeline">
-        {% for topic in topics %}
-        <div class="row">
-            <div class="col-sm-12 col-hr">
-                <div class="row">
-                    <div class="col-sm-1">
-                        <div class="timeline-date-wrapper text-center">
-                            <span class="date-timeline">11</span>
-                            <span class="month-timeline">Sept</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-10 col-md-11 col-sm-offset-1 col-md-offset-0">
-                        <div class="timeline-box-right-v2">
-                            <div class="panel panel-default">
-                                <div class="panel-heading"><a href="{{ path('topic_show', { 'id': topic.id }) }}">{{ topic.titre }}</a></div>
-                                <div class="panel-body">{{ topic.contenu }}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        {% endfor %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Liste des topics</div>
+        <div class="panel-body">
+            <p>Cliquer sur un topic pour plus de detais</p>
         </div>
+        <div class="list-group">
+            {% for topic in topics %}
+            <a href="{{ path('topic_show', { 'id': topic.id }) }}" class="list-group-item">{{ topic.titre }}
+                <span class="badge">{{ topic.idUser }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
 {% endblock %}
