@@ -37,3 +37,7 @@ forum:
 topic:
     resource: "@PiBundle/Resources/config/routing/topic.yml"
     prefix:   /topic
+
+user:
+    resource: "@PiBundle/Resources/config/routing/user.yml"
+    prefix:   /user

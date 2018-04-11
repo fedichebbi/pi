@@ -9,7 +9,7 @@ reclamation_show:
     methods:  GET
 
 reclamation_new:
-    path:     /new
+    path:     /new/{topic}/{user}
     defaults: { _controller: "PiBundle:Reclamation:new" }
     methods:  [GET, POST]
 

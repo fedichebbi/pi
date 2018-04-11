@@ -29,11 +29,18 @@ class Commentaire
     private $contenu;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=100, nullable=true)
+     */
+    private $titre;
+
+    /**
      * @var \Topic
      * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity="Topic")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_topic", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_topic", referencedColumnName="id",onDelete="CASCADE")
      * })
      */
     private $idTopic;
@@ -43,10 +50,17 @@ class Commentaire
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id",onDelete="CASCADE")
      * })
      */
     private $idUser;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    private $date;
 
     /**
      * @return int
@@ -110,6 +124,38 @@ class Commentaire
     public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * @param string $titre
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
     }
 
 

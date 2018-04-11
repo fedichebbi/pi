@@ -65,11 +65,13 @@ class TopicController extends Controller
         $deleteForm = $this->createDeleteForm($topic);
         $em=$this->getDoctrine()->getManager();
         $commentaires=$em->getRepository('PiBundle:Commentaire')->getbyTopic($topic->getId());
+        $reclamation=$em->getRepository('PiBundle:Reclamation')->getbyRecUser($topic->getId(),$user->getId());
         return $this->render('PiBundle:topic:show.html.twig', array(
             'topic' => $topic,
             'delete_form' => $deleteForm->createView(),
             'commentaires'=>$commentaires,
             'user'=>$user,
+            'reclamation'=>$reclamation
         ));
     }
 
@@ -191,7 +193,9 @@ class TopicController extends Controller
             $contenu=$request->get("contenu");
             $Commentaire->setContenu($this->filtrage($contenu));
             $Commentaire->setIdTopic($request->get("topic"));
+            $Commentaire->setTitre($request->get("titre"));
             $Commentaire->setIdUser($user);
+            $Commentaire->setDate(new \DateTime(date('Y-m-d H:i:s')));
             $EM = $this->getDoctrine()->getManager();
             $EM->persist($Commentaire);
             $EM->flush();
@@ -203,5 +207,16 @@ class TopicController extends Controller
 
         ));
     }
+    public function indexAdminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $topics = $em->getRepository('PiBundle:Topic')->findAll();
+
+        return $this->render('PiBundle:topic:indexAdmin.html.twig', array(
+            'topics' => $topics,
+        ));
+    }
+
 
 }

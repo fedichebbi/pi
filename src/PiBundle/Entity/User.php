@@ -25,6 +25,13 @@ class User extends BaseUser
      */
     private $sexe;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=20, nullable=true)
+     */
+    private $role;
+
     public function __construct()
     {
         parent::__construct();
@@ -61,6 +68,22 @@ class User extends BaseUser
     public function setSexe($sexe)
     {
         $this->sexe = $sexe;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 
 }

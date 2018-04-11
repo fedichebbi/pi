@@ -3,6 +3,8 @@
 namespace PiBundle\Controller;
 
 use PiBundle\Entity\Reclamation;
+use PiBundle\Entity\Topic;
+use PiBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -31,24 +33,45 @@ class ReclamationController extends Controller
      * Creates a new reclamation entity.
      *
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request,$topic)
     {
+        $user = new User();
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $Topic=new Topic();
+        $Topic=$em->getRepository("PiBundle:Topic")->find($topic);
         $reclamation = new Reclamation();
-        $form = $this->createForm('PiBundle\Form\ReclamationType', $reclamation);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $reclamation->setIdTopic($Topic);
+        $reclamation->setIdUser($user);
+        $reclamation->setDate(new \DateTime(date('Y-m-d H:i:s')));
             $em->persist($reclamation);
             $em->flush();
-
-            return $this->redirectToRoute('reclamation_show', array('id' => $reclamation->getId()));
-        }
-
-        return $this->render('reclamation/new.html.twig', array(
-            'reclamation' => $reclamation,
-            'form' => $form->createView(),
+            $total=$this->calculReclamations($Topic);
+        $reclamation=$em->getRepository('PiBundle:Reclamation')->getbyRecUser($Topic->getId(),$user->getId());
+            if($total[0][1]<4)
+        return $this->redirectToRoute('topic_show',array(
+            "id"=>$topic,
+            "count"=>$this->calculReclamations($Topic),
+            "reclamation"=>$reclamation
         ));
+           else if ($this->calculReclamations($Topic)>3)
+            {
+                $em->remove($Topic);
+                $em->flush();
+                return $this->redirectToRoute('topic_index',array(
+                    "count"=>$this->calculReclamations($Topic)
+                ));
+            }
+
+
+    }
+    public function calculReclamations($topic)
+    {
+
+        $em=$this->getDoctrine()->getManager();
+        $total=$em->getRepository('PiBundle:Reclamation')->getbyTopic($topic->getId());
+        return $total;
+
     }
 
     /**

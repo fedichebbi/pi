@@ -2,9 +2,7 @@
 
 {% block body %}
     <link rel="stylesheet" type="text/css" href={{ asset("ckeditor/ckeditor/content.css") }}>
-    {% for c in commentaires %}
-    {{ c.idUser }}
-    {% endfor %}
+
 
     <ul>
         <li>
@@ -29,6 +27,7 @@
             </div>
         </div>
     </div>
+
     <!-- SECTION MAIN -->
     <!--===============================================================-->
     <div class="container">
@@ -41,7 +40,17 @@
                     <div class="col-sm-12">
                         <div class="wrapper-post-v1">
                             <div class="wrapper-post-text text-theme-lg">
-                                <h3 class="title-xl text-uppercase text-theme-lg"><a href="#">{{ topic.titre }}</a></h3>
+                                <h3 class="title-xl text-uppercase text-theme-lg">{{ topic.titre }}
+                                    {% if topic.idUser!=user %}
+                                    {% if reclamation is empty %}
+                                        <a href="{{ path('reclamation_new', { 'topic': topic.id }) }}">
+                                            <button class="btn btn-rounded btn-yellow">Réclamer</button>
+                                        </a>
+                                    {% else %}
+                                        <button class="btn btn-rounded btn-primary">Vous avez reclamé ce topic</button>
+                                    {% endif %}
+                                    {% endif %}
+                                </h3>
                                 {% if topic.idUser==user %}
                                     <a href="{{ path('topic_edit', { 'id': topic.id }) }}">Edit</a>
                                 {% endif %}
@@ -71,19 +80,17 @@
                             {% for c in commentaires %}
                             <div class="media">
                                 <a class="media-left" href="#">
-                                    <img alt="64x64" src="assets/images/placeholder/64x64.gif" class=""> </a>
                                 <div class="media-body">
-                                    <h4 class="media-heading">{{ c.idUser }}</h4>
+                                    <h4 class="media-heading">{{ c.titre }}</h4>
                                     <ul class="list-unstyled list-inline post-date-author">
                                         <li>
                                             <a href="#" class="user-by">{{ c.idUser }}</a>
                                         </li>
                                         <li>
-                                            <a href="#">Sept 18, 2014</a>
+                                            {{ c.date|date('Y-m-d H:i:s') }}
                                         </li>
                                     </ul>
                                     {{ c.contenu }}
-                                    <a class="display-block" href="#"><small><i class="fa fa-reply mr-8"></i>Reply</small>
                                     </a>
                                 </div>
                             </div>
@@ -96,6 +103,11 @@
                         <div class="col-sm-12">
                             <h3 class="title-md hr-left mb-40">Leave a Comment</h3>
                             <form method="post" action="{{ path('topic_new_comm') }}">
+                                <div class="form-group">
+                                    <label for="inputEmail">Titre</label>
+                                    <input class="form-control" name="titre">
+
+                                </div>
                                 <label>Commentaire</label>
                                 <div class="row mb-20">
                                     <div class="col-md-11 col-md-offset-0">

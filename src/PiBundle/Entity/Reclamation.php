@@ -27,18 +27,13 @@ class Reclamation
      * @ORM\Column(name="date", type="datetime", nullable=false)
      */
     private $date;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="contenu", type="string", length=300, nullable=false)
-     */
-    private $contenu;
+
     /**
      * @var \Topic
      *
      * @ORM\ManyToOne(targetEntity="Topic")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_topic", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_topic", referencedColumnName="id",onDelete="CASCADE")
      * })
      */
     private $idTopic;
@@ -48,7 +43,7 @@ class Reclamation
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id",onDelete="CASCADE")
      * })
      */
     private $idUser;
@@ -85,22 +80,6 @@ class Reclamation
     public function getDate()
     {
         return $this->date;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContenu()
-    {
-        return $this->contenu;
-    }
-
-    /**
-     * @param string $contenu
-     */
-    public function setContenu($contenu)
-    {
-        $this->contenu = $contenu;
     }
 
     /**

@@ -10,4 +10,20 @@ namespace PiBundle\Repository;
  */
 class ReclamationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getbyTopic($id)
+    {
+        $query=$this->getEntityManager()->createQuery(
+            "Select count(c) From PiBundle:Reclamation c where c.idTopic=:id")->setParameter("id",$id);
+        return $query->getResult();
+    }
+    public function getbyRecUser($id,$idUser)
+    {
+        $query=$this->getEntityManager()->createQuery(
+            "Select c From PiBundle:Reclamation c where c.idTopic=:id and c.idUser=:idUser")
+            ->setParameters(array(
+                "id"=>$id,
+                "idUser"=>$idUser
+            ));
+        return $query->getResult();
+    }
 }
