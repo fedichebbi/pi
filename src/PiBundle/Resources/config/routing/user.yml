@@ -1,4 +1,0 @@
-topic_new_comm:
-    path:     /register
-    defaults: { _controller: "PiBundle:User:registration" }
-    methods:  [GET, POST]

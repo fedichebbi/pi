@@ -14,13 +14,40 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $user = new User();
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        echo $user->getRole();
+
+        if( $this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ){
+            $user = new User();
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+            if ($user->getRole() == '0')
+                return $this->redirect('http://localhost/pi/web/app_dev.php/dash/');
+            elseif ($user->getRole() == '1')
+                return $this->redirect('http://localhost/pi/web/app_dev.php/topic');
+            elseif ($user->getRole() == '2')
+                return $this->redirect('http://localhost/pi/web/app_dev.php/dash/');
+            else
+                return $this->redirect('http://localhost/pi/web/app_dev.php/login');
+        }
+        else return $this->redirect('http://localhost/pi/web/app_dev.php/login');
+        /*if (is_string($user->getRole()))
+        {
+            if ($user->getRole() == '0')
+                return $this->redirect('http://localhost/pi/web/app_dev.php/dash/');
+            elseif ($user->getRole() == '1')
+                return $this->redirect('http://localhost/pi/web/app_dev.php/topic');
+            elseif ($user->getRole() == '2')
+                return $this->redirect('http://localhost/pi/web/app_dev.php/dash/');
+            else
+                return $this->redirect('http://localhost/pi/web/app_dev.php/login');
+        }
+
+        else {
+            return $this->redirect('http://localhost/pi/web/app_dev.php/login');
+        }*/
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
+        /*return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        ]);*/
 
     }
 }

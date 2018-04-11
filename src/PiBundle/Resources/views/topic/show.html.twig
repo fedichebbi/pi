@@ -13,7 +13,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" class="btn btn-rounded btn-yellow">
             {{ form_end(delete_form) }}
         </li>
     </ul>
@@ -101,17 +101,17 @@
                 <div class="media-blog">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3 class="title-md hr-left mb-40">Leave a Comment</h3>
+                            <h3 class="title-md hr-left mb-40">Laisser un commentaire</h3>
                             <form method="post" action="{{ path('topic_new_comm') }}">
                                 <div class="form-group">
                                     <label for="inputEmail">Titre</label>
-                                    <input class="form-control" name="titre">
+                                    <input class="form-control" name="titre" required>
 
                                 </div>
                                 <label>Commentaire</label>
                                 <div class="row mb-20">
                                     <div class="col-md-11 col-md-offset-0">
-                                        <textarea class="form-control" rows="8" name="contenu"></textarea>
+                                        <textarea class="form-control" rows="8" name="contenu" required></textarea>
                                         <input name="topic" value="{{ topic.id }}" hidden>
                                     </div>
                                 </div>

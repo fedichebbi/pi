@@ -5,3 +5,7 @@ pi_topic:
 pi_homepage:
     path:     /
     defaults: { _controller: PiBundle:Default:index }
+
+pi_topic_admin:
+    resource: "@PiBundle/Resources/config/routing/admin.yml"
+    prefix:   /admin
