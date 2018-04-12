@@ -1,0 +1,89 @@
+{% extends "::baseAdmin.html.twig" %}
+
+{% block title %}PiBundle:Article:modifierArticle{% endblock %}
+
+{% block body %}
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Modifier Article</li>
+</ol>
+<!-- Example DataTables Card-->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-pagelines"></i>{{ articles.titre }}</div>
+    <div class="card-body">
+
+    <form method="post">
+
+            <legend>Modifier article</legend>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationServer01">Categorie</label>
+
+            <select class="custom-select" name="categorie" required>
+                <option selected>Choisir un catégorie</option>
+
+                <option value="Maman">Maman</option>
+                <option value="Bébé">Bébé</option>
+                <option value="nourriture">Nourriture</option>
+                <option value="Hygiéne">Hygiéne</option>
+
+            </select>
+        </div>
+
+                    <div class="col-md-4 mb-3">
+                    <label>Titre : </label>
+
+
+                        <input type="text"   class="form-control" name="titre" value="{{ articles.titre }}">
+                        </div>
+
+                    <div class="form-group">
+                    <label>Contenu : </label>
+
+                        <textarea class="form-control" name="contenu"  rows="10">{{ articles.contenu }}</textarea>
+                        </div>
+
+                    <div class="col-md-4 mb-3">
+                    <label>Note : </label>
+
+
+                        <input type="text"   class="form-control" name="note" value="{{ articles.note }}" readonly>
+                        </div>
+
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifierModal">
+            Modifier
+        </button>
+        <a href="{{ path('liste_articleAdmin') }}"><input class="btn btn-secondary" type="button" value="Annuler"></a>
+        <!-- Modal -->
+        <div class="modal fade" id="modifierModal" tabindex="-1" role="dialog" aria-labelledby="modifierModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modifierModalLabel">Modifier cet article?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       Voulez vous modifier cet article?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary" >Valider</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+    </div>
+</div>
+
+{% endblock %}

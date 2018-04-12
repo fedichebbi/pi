@@ -1,5 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<div id="section-video">
+    <video autoplay poster={{ asset("assets/video/ocean.jpg") }} loop>
+        <source src={{ asset("assets/video/ocean.webm") }} type="video/webm">
+        <source src={{ asset("assets/video/ocean.mp4") }} type="video/mp4">
+    </video>
+    <div class="section section-both section-xl">
+        <div class="container">
+            <div class="row">
+                <div class="wrapper-preloader">
+                    <div id="preloader"></div>
+                </div>
+                <div class="col-md-6 col-md-offset-3 col-sm-12 text-center text-video-bg">
+                    <h1 class="text-theme title-xl hr text-uppercase">Multipurpose, Unlimited Options In One Theme</h1>
+                    <p class="text-theme lead">Multipurpose, Unlimited Options In One Theme
+                        <br>Build Your Website Fast</p>
+                    <a class="text-theme btn btn-primary btn-lg btn-ghost"><i class="fa fa-cloud-download"></i>Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

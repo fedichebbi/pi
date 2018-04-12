@@ -1,0 +1,42 @@
+promotion_index:
+    path:     /
+    defaults: { _controller: "PiBundle:Promotion:index" }
+    methods:  GET
+
+promotion_show:
+    path:     /{id}/show
+    defaults: { _controller: "PiBundle:Promotion:show" }
+    methods:  GET
+
+promotion_new:
+    path:     /new
+    defaults: { _controller: "PiBundle:Promotion:new" }
+    methods:  [GET, POST]
+
+promotion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PiBundle:Promotion:edit" }
+    methods:  [GET, POST]
+
+promotion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PiBundle:Promotion:delete" }
+    methods:  DELETE
+
+promotion_del:
+    path:     /test
+    defaults: { _controller: "PiBundle:Promotion:test" }
+
+rate:
+    path:     /rate
+    defaults: { _controller: "PiBundle:Promotion:rate" }
+
+promotion_indexfront:
+    path:     /front
+    defaults: { _controller: "PiBundle:Promotion:indexfront" }
+    methods:  GET
+
+promotion_showfront:
+    path:     /{id}/showf
+    defaults: { _controller: "PiBundle:Promotion:showfront" }
+    methods:  GET

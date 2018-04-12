@@ -3,9 +3,21 @@ pi_topic:
     prefix:   /topic
 
 pi_homepage:
-    path:     /
+    path:     /ok
     defaults: { _controller: PiBundle:Default:index }
 
 pi_topic_admin:
     resource: "@PiBundle/Resources/config/routing/admin.yml"
     prefix:   /admin
+
+pi_produit:
+    resource: "@PiBundle/Resources/config/routing/produit.yml"
+    prefix:   /produit
+
+pi_promotion:
+    resource: "@PiBundle/Resources/config/routing/promotion.yml"
+    prefix:   /promotion
+
+
+
+

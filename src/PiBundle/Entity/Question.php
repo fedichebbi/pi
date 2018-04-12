@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Question
  *
- * @ORM\Table(name="question", indexes={@ORM\Index(name="ct", columns={"id_video"})})
+ * @ORM\Table(name="question")
  * @ORM\Entity
  */
 class Question
@@ -29,9 +29,12 @@ class Question
     private $score;
 
     /**
-     * @var integer
+     * @var Video
      *
-     * @ORM\Column(name="id_video", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Video")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idVideo", referencedColumnName="id")
+     * })
      */
     private $idVideo;
 
@@ -41,6 +44,70 @@ class Question
      * @ORM\Column(name="quest", type="string", length=200, nullable=false)
      */
     private $quest;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * @param int $score
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdVideo()
+    {
+        return $this->idVideo;
+    }
+
+    /**
+     * @param int $idVideo
+     */
+    public function setIdVideo($idVideo)
+    {
+        $this->idVideo = $idVideo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuest()
+    {
+        return $this->quest;
+    }
+
+    /**
+     * @param string $quest
+     */
+    public function setQuest($quest)
+    {
+        $this->quest = $quest;
+    }
 
 
 }

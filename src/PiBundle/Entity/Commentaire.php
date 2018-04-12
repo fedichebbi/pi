@@ -31,7 +31,7 @@ class Commentaire
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=100, nullable=true)
+     * @ORM\Column(name="titre", type="string", length=256, nullable=true)
      */
     private $titre;
 

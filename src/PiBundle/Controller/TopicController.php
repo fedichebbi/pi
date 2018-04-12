@@ -217,6 +217,22 @@ class TopicController extends Controller
             'topics' => $topics,
         ));
     }
+    public function DeleteTopicAction($id){
 
+        $EM = $this->getDoctrine()->getManager();
+        $Topic= $EM->getRepository("PiBundle:Topic")->find("$id");
+        $EM->remove($Topic);
+        $EM->flush();
+        return $this->redirectToRoute('topic_admin_i');
+    }
+
+    public function DeleteTopAction($id){
+
+        $EM = $this->getDoctrine()->getManager();
+        $Topic= $EM->getRepository("PiBundle:Topic")->find("$id");
+        $EM->remove($Topic);
+        $EM->flush();
+        return $this->redirectToRoute('topic_index');
+    }
 
 }

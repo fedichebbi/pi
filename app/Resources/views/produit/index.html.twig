@@ -1,0 +1,72 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Data Table Example</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Designation</th>
+                        <th>Nom</th>
+                        <th>Categorie</th>
+                        <th>Prix</th>
+                        <th>Marque</th>
+                        <th>Fournisseur</th>
+                        <th>Note</th>
+                        <th>Quantite</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Designation</th>
+                        <th>Nom</th>
+                        <th>Categorie</th>
+                        <th>Prix</th>
+                        <th>Marque</th>
+                        <th>Fournisseur</th>
+                        <th>Note</th>
+                        <th>Quantite</th>
+                        <th>Actions</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for produit in produits %}
+                        <tr>
+                            <td><a href="{{ path('produit_show', { 'designation': produit.designation }) }}">{{ produit.designation }}</a></td>
+                            <td>{{ produit.nom }}</td>
+                            <td>{{ produit.categorie }}</td>
+                            <td>{{ produit.prix }}</td>
+                            <td>{{ produit.marque }}</td>
+                            <td>{{ produit.fournisseur }}</td>
+                            <td>{{ produit.note }}</td>
+                            <td>{{ produit.quantite }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('produit_show', { 'designation': produit.designation }) }}">show</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('produit_edit', { 'designation': produit.designation }) }}">edit</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <div > {{ knp_pagination_render(produits) }}</div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <ul>
+        <li>
+            <a href="{{ path('produit_new') }}">Create a new produit</a>
+        </li>
+    </ul>
+{% endblock %}

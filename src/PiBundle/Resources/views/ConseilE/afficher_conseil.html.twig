@@ -1,0 +1,46 @@
+{% extends "::base.html.twig" %}
+
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- GRID POSTS -->
+            <!--===============================================================-->
+            <div class="col-sm-8 grid-posts">
+                <!-- POST ITEM 1 -->
+                {% for conseil in conseils %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="wrapper-post">
+                                <a href="#" class="text-theme display-block">
+                                    <img src="{{ asset("assets/images/general/5.jpg") }}" class="img-responsive full-width" alt="img-theme">
+                                </a>
+                                <div class="wrapper-post-text">
+                                    <h3 class="title-lg text-uppercase text-theme"><a href="#">{{ conseil.titre }}</a></h3>
+                                    <ul class="list-unstyled list-inline text-theme post-date-author">
+                                        <li>
+                                            <a href="#"><i class="fa fa-comment-o"></i>Admin</a>
+                                        </li>
+
+
+                                    </ul>
+                                    <p>Pour voir le conseil de notre expert cliquer "Lire"
+                                    </p>
+                                    <a href="{{  path('details_conseil',{'titre':conseil.titre,'contenu':conseil.contenu})}}" class="text-theme btn btn-primary btn-md">Lire</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+
+
+
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

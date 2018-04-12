@@ -2,3 +2,6 @@ topic_admin_i:
     path:     /
     defaults: { _controller: "PiBundle:Topic:indexAdmin" }
     methods:  GET
+topic_delete:
+    path:     Deletetopic{id}
+    defaults: { _controller: PiBundle:Topic:DeleteTopic }

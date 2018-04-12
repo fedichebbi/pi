@@ -41,3 +41,15 @@ topic:
 admin_index:
     resource: "@PiBundle/Resources/config/routing/admin.yml"
     prefix:   /dash
+
+article:
+    resource: "@PiBundle/Resources/config/routing/article.yml"
+    prefix:   /article
+
+babysitter:
+    resource: "@PiBundle/Resources/config/routing/babysitter.yml"
+    prefix:   /babysitter
+
+video:
+    resource: "@PiBundle/Resources/config/routing/videoback.yml"
+    prefix:   /video

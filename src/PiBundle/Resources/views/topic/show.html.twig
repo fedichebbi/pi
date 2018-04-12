@@ -3,20 +3,6 @@
 {% block body %}
     <link rel="stylesheet" type="text/css" href={{ asset("ckeditor/ckeditor/content.css") }}>
 
-
-    <ul>
-        <li>
-            <a href="{{ path('topic_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('topic_edit', { 'id': topic.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" class="btn btn-rounded btn-yellow">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
     <div class="section-blog-photo-intro">
         <div class="opacity-layer section section-blog-photo-intro-height">
             <div class="container">
@@ -30,16 +16,31 @@
 
     <!-- SECTION MAIN -->
     <!--===============================================================-->
+
     <div class="container">
         <div class="row row-wrapper-posts-intro">
             <!-- GRID POSTS -->
             <!--===============================================================-->
+
             <div class="col-md-8 col-md-offset-2 grid-posts grid-posts-intro">
                 <!-- POST -->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="wrapper-post-v1">
                             <div class="wrapper-post-text text-theme-lg">
+
+
+                                        <a class="btn btn-primary" href="{{ path('topic_index') }}">Retour</a>
+
+                                    </br>
+                                </br>
+                                    {% if topic.idUser==user %}
+
+                                        <a class="btn btn-primary" href="{{ path('topic_supprimer',{'id':topic.id}) }}">Supprimer</a>
+
+                                    {% endif %}
+                                <br>
+
                                 <h3 class="title-xl text-uppercase text-theme-lg">{{ topic.titre }}
                                     {% if topic.idUser!=user %}
                                     {% if reclamation is empty %}
@@ -69,6 +70,7 @@
                             <p>
                               {{ topic.contenu|raw }}
                             </p>
+                            {{ twitterButton() }}
                         </div>
                     </div>
                 </div>

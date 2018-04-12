@@ -1,0 +1,103 @@
+{% extends "::base.html.twig" %}
+
+
+{% block body %}
+
+
+    <!-- SECTION -->
+    <!--===============================================================-->
+    <div class="section section-xs section-bottom">
+        <div class="container">
+            <div class="row mb">
+                <br><br>
+                {{ facebookButton()}}
+
+                {{ twitterButton()}}
+
+                {{ googleplusButton()}}
+
+                {{ linkedinButton()}}
+            </div>
+            <div class="row mb">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="panel-acc panel-group panel-group-v2 panel-group-icon-v1 icon-right" id="accordion-icon-right-v2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion-icon-right-v2" href="#content-icon-right-1-v2">
+                                       Nom de la Suggestion
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="content-icon-right-1-v2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p class="text-theme">
+                                        {{ nom  }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion-icon-right-v2" href="#content-icon-right-2-v2">
+                                        Heure
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="content-icon-right-2-v2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p class="text-theme">
+                                        {{ horaire  }}                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion-icon-right-v2" href="#content-icon-right-3-v2">
+                                        Adresse
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="content-icon-right-3-v2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p class="text-theme">
+                                            {{adresse  }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion-icon-right-v2" href="#content-icon-right-4-v2">
+                                         Type de Suggestion
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="content-icon-right-4-v2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p class="text-theme">
+                                        {{ type }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mb">
+                <div class="col-sm-6 col-sm-offset-3 text-center section section-both section-xs section-dark">
+                    <h3 class="title-sm text-theme">Vous Avez besoins encore d'information ?</h3>
+                    <p class="lead text-theme">Appeler le propriétaire de la suggestion</p>
+                    <i class="fa fa-3x fa-phone text-theme colored fa-box"></i>
+                    <h3 class="title-sm text-theme">{{ telephone }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

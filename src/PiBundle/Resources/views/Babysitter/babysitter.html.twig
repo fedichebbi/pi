@@ -1,0 +1,225 @@
+{% extends "::base.html.twig" %}
+{% block javascripts %}
+
+{% endblock %}
+{% block body %}
+
+
+        <!-- SECTION HEADING -->
+    <script language="javascript">
+        function verif()
+        {
+            if (isNaN (form1.prix.value)== true)
+            {
+                alert ('Merci  de saisir le prix correct');
+
+            }
+
+
+
+        }
+        function verif2()
+        {
+           /* N=document.form1.n_tel.value;
+            if(N<99999999|| N>=10000000)
+            {alert("le numero de telephone non valide");}*/
+            if (isNaN (form1.n_tel.value)== true)
+            {
+                alert ('Merci  de saisir le numero correctement');
+
+            }
+
+        }
+
+    </script>
+        <!--===============================================================-->
+        <div class="section-heading-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1 class="heading-page text-center-xs">BabySitter</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb text-right text-center-xs">
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                                <a href="#">Pages</a>
+                            </li>
+                            <li class="active">BabySitter</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION -->
+        <!--===============================================================-->
+        <div class="section">
+            <div class="container">
+                <div class="row mb" id="progress-bar-count">
+                    <div class="col-sm-6 col-side">
+                        <h3 class="title-lg text-theme">Nos BabySitters</h3>
+                            <p class="text-theme lead">Trouver votre BabySitter préférée.</p>
+                        <h3 class="title-progress">Experience</h3>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">40% Complete (success)</span>
+                                <span class="countto-bar" data-from="25" data-speed="1250" data-refresh-interval="50" data-to="75"></span>
+                            </div>
+                        </div>
+                        <h3 class="title-progress">prudente</h3>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">40% Complete (success)</span>
+                                <span class="countto-bar" data-from="25" data-speed="1250" data-refresh-interval="50" data-to="100"></span>
+                            </div>
+                        </div>
+                        <h3 class="title-progress">Responsable</h3>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">40% Complete (success)</span>
+                                <span class="countto-bar" data-from="25" data-speed="1250" data-refresh-interval="50" data-to="40"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- SLIDER -->
+                        <div class="wrapper-slider">
+                            <div id="carousel-30" class="carousel slide" data-ride="carousel" data-interval="3500">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img class="img-slide" src="{{ asset("assets/images/team/bb1.jpg") }}" alt="theme-img">
+                                    </div>
+                                    <div class="item">
+                                        <img class="img-slide" src="{{ asset("assets/images/team/bb2.jpg") }}" alt="theme-img">
+                                    </div>
+                                    <div class="item">
+                                        <img class="img-slide" src="{{ asset("assets/images/team/bb3.jpg") }}" alt="theme-img">
+                                    </div>
+                                    <div class="item">
+                                        <img class="img-slide" src="{{ asset("assets/images/team/bb4.jpg") }}" alt="theme-img">
+                                    </div>
+                                </div>
+                                <!-- Controls -->
+                                <a href="#carousel-30" role="button" data-slide="prev">
+                                    <i class="fa fa-angle-left fa-2x btn-prev"></i>
+                                </a>
+                                <a href="#carousel-30" role="button" data-slide="next">
+                                    <i class="fa fa-angle-right fa-2x btn-next"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- SLIDER END-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SECTION TEAM -->
+        <!--===============================================================-->
+    </div>
+
+
+    <br>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="title-v2">Nos BabySitters</h3>
+                </div>
+            </div>
+            <div class="row">
+    {% for b in babysitters %}
+
+                <div class="col-sm-3 text-center">
+                    <div class="content-box bordered">
+                        <a href="{{ path('detail', {'date_dispo':b.dateDispo,'horaire':b.horaire,'prix':b.prix ,'lieux':b.lieux ,'n_tel':b.nTel,'description':b.description}) }}" class="img-wrapper text-theme-sm">
+                            <img class="img-responsive" src="{{ asset("assets/images/team/bb.jpg") }}" alt="theme-img">
+                        </a>
+                        <h3 class="title-sm text-theme-sm">{{ b.horaire }}</h3>
+                        <p class="text-theme-sm">{{ b.lieux }}</p>
+                        <div class="text-theme-sm">
+                            {{ facebookButton()}}
+                            <br>
+                            {{ twitterButton()}}
+                            <br>
+                            {{ googleplusButton()}}
+                            <br>
+                            {{ linkedinButton()}}
+
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+    <br><br>
+    <div class="row row-code">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="title-v2">Postulater comme babySitter</h3>
+                </div>
+            </div>
+            <div class="panel panel-light text-theme">
+                <div class="panel-heading">
+
+
+                    <h3 class="panel-title"></h3>
+                </div>
+                <div class="panel-body">
+                    <form method="post" name="form1" >
+                        <div class="form-group">
+                            <label for="date_dispo">Date disponibilité</label>
+                            <input  id="date" type="Date" data-provide="datepicker" class="form-control" name="date_dispo" placeholder="date disponibilité" min="2018-04-12" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="horaire">Nom & Prénom</label>
+                            <input type="text" class="form-control" name="horaire" placeholder="Nom et prénom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lieux">Lieux</label>
+                            <input type="text" class="form-control" name="lieux" placeholder="Lieux" id="lieux" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prix">Salaire</label>
+                            <input type="text" class="form-control" name="prix" placeholder="Salaire" required onkeyup="verif()">
+                        </div>
+                        <div class="form-group">
+                            <label for="n_tel">Numero de telephone</label>
+                            <input type="text" class="form-control" name="n_tel" placeholder="Numero" required  onkeyup="verif2()" >
+                        </div>
+                        <div class="form-group">
+                            <label for="Description">Description</label>
+                            <textarea type="text" class="form-control" rows="6" name="description" placeholder="description" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary"  formaction="Ajouter" >Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+
+
+    <!-- SECTION CUSTOMERS -->
+    <!--===============================================================-->
+
+    <!-- CONTENT COLUMN -->
+    <!--===============================================================-->
+
+
+
+
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends "::base.html.twig" %}
+
+
+{% block body %}
+
+    <!--SECTION HEADING -->
+    <!--===============================================================-->
+    <div class="section-heading-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="heading-page text-center-xs">Services</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb text-right text-center-xs">
+                        <li>
+                            <a href="#">Services</a>
+                        </li>
+
+                        <li class="active">Suggestions</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--SECTION -->
+    <!--===============================================================-->
+    <div class="section section-lg section-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 text-center">
+                    <h3 class="title-xl text-theme title-section text-uppercase hr">Nos SERVICES contient</h3>
+                    <p class="text-theme lead lead-section">Vous Allez Trouvez nos Suggestion d'evenements et de Festivales pour vos enfants</p>
+                </div>
+            </div>
+            <div class="row mb">
+                {% for s in suggestions %}
+                <div class="col-md-4">
+                    <div class="icon-box bordered">
+                        <i class="fa fa-rocket fa-3x text-theme"></i>
+                        <h3 class="title-sm text-theme">{{ s.nom  }}</h3>
+                        <p class="text-theme">{{ s.type  }}</p>
+                        <a class="btn btn-primary btn-xs text-theme" href="{{ path('detailSuggestion', {'nom':s.nom,'adresse':s.adresse,'horaire':s.horaire ,'telephone':s.telephone|number_format,'type':s.type}) }}">Read More</a>
+                    </div>
+                </div>
+                {% endfor %}
+            <div class="row">
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <br><br>
+            <div class="row row-code">
+                <div class="col-md-12">
+                    <div class="row">
+
+                    </div>
+                     <div class="panel panel-light text-theme">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--SECTION -->
+    <!--===============================================================-->
+
+
+    </div><div id="div"></div>
+    <script src="{{ asset('jquery.js') }}"></script>
+    <script>
+        $("#formulaire_type").keyup(
+            function () {
+                var type=$('#formulaire_type').val();
+                var DATA ='type='+type;
+                $.ajax({
+                    type:"POST",
+                    url:"{{ path('rechercherDQL') }}",
+                    data:DATA,
+
+                    success: function (data) {
+                        console.log("data**");
+                        console.log(data);
+                        // language=HTML
+                        $("#div").html("<table id='res' border='1'>"+
+                            "<td> Marque </td><td>Data mise circulation</td>"+
+                            "<td> Modele</td></table>");
+                        $.each(data,function (k, el) {
+                            $("#affichage").hide();
+                            $('#res').append(
+                                "<tr>" +
+                                "<td>"+el.nom+"</td>"+
+                                "<td>"+el.adresse+
+                                "</td>" +
+                                "<td>"+el.horaire+
+                                "</td>" +
+                                "<td>"+el.telephone+
+                                "</td>" +
+                                "<td>"+el.type+"</td>"
+                                +"</tr>"
+                            );
+                        });
+                    }
+                });
+            }
+        );
+    </script>
+
+
+
+{% endblock %}

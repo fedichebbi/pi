@@ -1,0 +1,42 @@
+produit_index:
+    path:     /
+    defaults: { _controller: "PiBundle:Produit:index" }
+    methods:  GET
+
+produit_show:
+    path:     /{designation}/show
+    defaults: { _controller: "PiBundle:Produit:show" }
+    methods:  GET
+
+produit_new:
+    path:     /new
+    defaults: { _controller: "PiBundle:Produit:new" }
+    methods:  [GET, POST]
+
+produit_edit:
+    path:     /{designation}/edit
+    defaults: { _controller: "PiBundle:Produit:edit" }
+    methods:  [GET, POST]
+
+produit_delete:
+    path:     /{designation}/delete
+    defaults: { _controller: "PiBundle:Produit:delete" }
+    methods:  DELETE
+
+produit_indexfront:
+    path:     /front
+    defaults: { _controller: "PiBundle:Produit:indexfront" }
+    methods:  GET
+
+produit_showfront:
+    path:     /{designation}/showfront
+    defaults: { _controller: "PiBundle:Produit:showfront" }
+    methods:  GET
+produit_search:
+    path:     /recherche
+    defaults: { _controller: "PiBundle:Produit:rechercheAjax" }
+
+pi_stat:
+    path:     /ok
+    defaults: { _controller: PiBundle:Default:index }
+

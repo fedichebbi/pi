@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <script src="{{ asset("js/jquery-2.2.3.min..js") }}"></script>
+
+    <script>
+        function changed(){
+            $.ajax({
+                type :'POST',
+                url : "{{ path("produit_search") }}",
+                data : {text : $("#text").val()},
+                success:function (data) {
+                    $("#table").html("<table class='table table-bordered' id='dataTable' width='400%' cellspacing='0'>"+
+                    "<thead>"+
+                    "<tr>"+
+                    "<th>Nom</th>"+
+                    "<th>Prix en dt</th>"+
+                    "</tr>"+
+                    "</thead>"+
+
+                    "<tbody id='tbody'></tbody>");
+                    $.each(data,function (k,el) {
+                        $("#tbody").append(
+                            " <tr>"+
+                            "<td>"+el.nom+"</td>"+
+                            "<td>"+el.prix+"</td>"+
+                            "<td>"+
+                            "<ul>"+
+                            "<li>"+
+                            "<a href=\"/pi/web/app_dev.php/pi/produit/showfront?designation="+el.designation+"\">show</a>"+
+                            "</li>"+
+                            "</ul>"+
+                            "</td>"+
+                            "</tr>"
+                        )
+                    })
+                }
+            });
+        }
+
+    </script>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Nos produits</div>
+        <div class="card-body">
+            <input type="text" id="text" onkeyup="changed()">
+            <div class="table-responsive" id="table">
+
+                <table class="table table-bordered" id="dataTable" width="400%" cellspacing="0">
+                    <thead>
+                    <tr>
+
+                        <th>Nom</th>
+                        <th>Prix en dt</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for produit in produits %}
+                        <tr>
+                            <td>{{ produit.nom }}</td>
+                            <td>{{ produit.prix }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('produit_showfront', { 'designation': produit.designation }) }}">show</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <div > {{ knp_pagination_render(produits) }}</div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

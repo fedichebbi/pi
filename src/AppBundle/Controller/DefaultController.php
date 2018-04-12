@@ -24,11 +24,14 @@ class DefaultController extends Controller
             elseif ($user->getRole() == '1')
                 return $this->redirect('http://localhost/pi/web/app_dev.php/topic');
             elseif ($user->getRole() == '2')
-                return $this->redirect('http://localhost/pi/web/app_dev.php/dash/');
+                return $this->redirect('http://localhost/pi/web/app_dev.php/article/afficherConseilExpert');
             else
                 return $this->redirect('http://localhost/pi/web/app_dev.php/login');
         }
         else return $this->redirect('http://localhost/pi/web/app_dev.php/login');
+            /*return $this->render('default/index.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);*/
         /*if (is_string($user->getRole()))
         {
             if ($user->getRole() == '0')

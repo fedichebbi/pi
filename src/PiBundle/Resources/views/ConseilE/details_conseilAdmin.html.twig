@@ -1,0 +1,42 @@
+{% extends "::baseAdmin.html.twig" %}
+{% block title %}PiBundle:Article:detailsArticle{% endblock %}
+
+{% block body %}
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Details Conseil Experts </li>
+    </ol>
+    <!-- Example DataTables Card-->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-pagelines"></i>Conseil Experts </div>
+        <div class="card-body">
+
+            <form >
+                <fieldset>
+                    <legend>Details</legend>
+                    <table>
+
+                        <tr>
+                            <td>Titre :  </td><br></tr>
+                        <tr><td></td> <td><p>{{ titre }}</p> </td><br>
+                        </tr>
+                        <br>
+                        <tr>
+                            <td>Contenue: </td></tr><br>
+                        <tr><br>
+                            <td></td> <td><p>{{ contenu }}</p> </td><br>
+                        </tr><br>
+
+                    </table>
+                </fieldset>
+                <a href="{{ path('afficher_conseilAdmin') }}"><input class="btn btn-secondary" type="button" value="Retour"></a>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

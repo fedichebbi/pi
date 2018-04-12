@@ -1,0 +1,190 @@
+{% extends "::baseAdmin.html.twig" %}
+
+
+
+
+
+
+{% block body %}
+
+
+
+            <!-- Example DataTables Card-->
+            <div class="card mb-3">
+                <div class="card-header">
+
+                    <i class="fa fa-table"></i> Data Table Example</div>
+
+                <div class="card-body">
+                    <a href="{{ path('ajouterSuggestion') }}"><input type="button"  class="btn btn-primary" value="Ajouter une suggestion "></a><br></div>
+                <form>
+
+                        <input class="form-control" id="searchbar" type="text" placeholder="Rechercher par adresse..."><span class="input-group-append">
+
+              </span>
+
+                </form>
+                <br>
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                            <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Adresse</th>
+                                <th>horaire</th>
+                                <th>telephone</th>
+                                <th>Type</th>
+                                <th>Supprimer</th>
+                                <th>Modifier</th>
+                                <th>Afficher</th>
+                            </tr>
+                            </thead>
+
+
+                            <tbody class="grid" id="div" >
+
+
+
+
+
+                            {% for s in suggestions %}
+                                <tr>
+                                    <td>{{ s.nom  }}</td>
+                                    <td>{{ s.adresse }}</td>
+                                    <td>{{ s.horaire }}</td>
+                                    <td>{{ s.telephone}}</td>
+                                    <td>{{ s.type }}</td>
+
+                                    <!-- Button trigger modal -->
+                                    <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">
+                                        Supprimer
+                                    </button>
+                                    </td>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel">Suppression</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Voulez vous supprimer cette suggestion?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                    <a href="{{ path('deleteSuggestion',{'id':s.id}) }}"><input type="button"  class="btn btn-primary" value="valider"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Update-->
+                                    <!-- Button trigger modal -->
+
+                                    <!-- Modal -->
+                                    <td><a href="{{ path('_updateSuggestion',{'id':s.id}) }}"><input class="btn btn-primary btn-block" type="button" value="Modifier"></a></td>
+                                           <!-- Modal -->
+
+
+                                    <td><a href="{{ path('detailSuggestion_admin', {'nom':s.nom,'adresse':s.adresse,'horaire':s.horaire ,'telephone':s.telephone|number_format,'type':s.type}) }}">details</a></td>
+                                </tr>
+
+
+                            {% endfor %}
+
+
+                            </tbody>
+
+                        </table>
+
+
+                        <div class="navigation text-center">
+                            {{ knp_pagination_render(suggestions) }}
+                        </div>
+                    </div>
+
+                </div>
+
+    <script src="{{ asset('jquery.js') }}"></script>
+
+    <script>
+
+        ///////////////////
+
+
+        $("#searchbar").keyup(
+            function () {
+                var   adresse=$('#searchbar').val();
+                //    var DATA ='adresse'+adresse;
+                var DATA ='adresse='+adresse;
+                var i=0;
+                $.ajax({
+
+                    type:"POST",
+                    url:"{{ path('RechercherdqlSuggestion') }}",
+                    data: DATA,
+                    success: function (data) {
+                        console.log("data**");
+                  //    console.log(data);
+                        //language=HTML
+                        $("#div").html("<tbody id='res' class='grid' >");
+                        $.each(data,function (k, el) {
+                                $("#aff").hide();
+                                $('#res').append(
+                                    "<tr>"+
+                                    "<td>"+
+                                    el.nom+
+                                    "</td>"+
+
+                                    "<td>"+
+                                    el.adresse+
+                                    "</td>"+
+
+
+                                    "<td>"+
+                                    el.horaire+
+                                    "</td>"+
+
+                                    "<td>"+
+                                    el.telephone+
+                                    "</td>"+
+
+                                    "<td>"+
+                                        el.type+
+                                        "</td>"+
+
+
+                                    "</tr>"
+
+
+
+
+
+                                );
+                            }
+
+
+                        );
+                    },
+                    error:function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
+                });            }
+        );
+        ///////////////////
+
+    </script>
+
+
+
+
+
+
+
+{% endblock %}

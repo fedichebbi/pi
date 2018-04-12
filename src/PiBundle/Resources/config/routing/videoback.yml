@@ -1,0 +1,66 @@
+pi_homepage:
+    path:     /
+    defaults: { _controller: PiBundle:Default:index }
+
+video_show:
+    path:     /indexV
+    defaults: { _controller: PiBundle:Videoo:index }
+
+video_new:
+    path:     /ajoutV
+    defaults: { _controller: PiBundle:Videoo:Ajout }
+
+video_edit:
+    path:     /modifierV/{id}
+    defaults:  {  _controller: PiBundle:Videoo:Modifier }
+    methods:  [GET, POST]
+
+video_supp:
+    path:     /supprimerV/{id}
+    defaults: { _controller:  PiBundle:Videoo:Supprimer }
+
+video_lire:
+    path:     /lireV/{id}
+    defaults: { _controller:  PiBundle:Videoo:Lire }
+
+question_show:
+    path:     /indexQ
+    defaults: { _controller: PiBundle:Question:index }
+
+question_detail:
+    path:     /detailQ/{id}
+    defaults: { _controller: PiBundle:Question:Detail }
+
+question_new:
+    path:     /ajoutQ/{id}
+    defaults: { _controller: PiBundle:Question:Ajout }
+
+question_edit:
+    path:     /modifierQ/{id}
+    defaults:  {  _controller: PiBundle:Question:Modifier }
+    methods:  [GET, POST]
+
+question_supp:
+    path:     /supprimerQ/{id}
+    defaults: { _controller:  PiBundle:Question:Supprimer }
+
+reponse_show:
+    path:     /indexR
+    defaults: { _controller: PiBundle:Reponse:index }
+
+reponse_detail:
+    path:     /detailR/{id}
+    defaults: { _controller: PiBundle:Reponse:Detail }
+
+reponse_new:
+    path:     /ajoutR/{id}
+    defaults: { _controller: PiBundle:Reponse:Ajout }
+
+reponse_edit:
+    path:     /modifierR/{id}
+    defaults:  {  _controller: PiBundle:Reponse:Modifier }
+    methods:  [GET, POST]
+
+reponse_supp:
+    path:     /supprimerR/{id}
+    defaults: { _controller:  PiBundle:Reponse:Supprimer }

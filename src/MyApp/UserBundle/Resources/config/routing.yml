@@ -1,3 +1,11 @@
 my_app_user_homepage:
     path:     /
     defaults: { _controller: MyAppUserBundle:Default:index }
+
+jeu_show:
+    path:     /loisir
+    defaults: { _controller: MyAppUserBundle:Default:play }
+
+jeu_result:
+    path:     /loisir/result/{id}
+    defaults: { _controller: MyAppUserBundle:Default:result }

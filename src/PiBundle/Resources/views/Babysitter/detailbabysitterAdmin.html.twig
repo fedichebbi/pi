@@ -1,0 +1,20 @@
+{% extends "::baseAdmin.html.twig" %}
+
+
+{% block body %}
+    <!-- SECTION -->
+    <div class="card-header">
+        <i class="fa fa-table"></i>les details du babysitter concerné</div>
+<br><br>
+        <h6>Nom:</h6> {{ horaire }}<br>
+        <h6> datedisponibilité :</h6>  {{ date_dispo |join ('-')}}<br>
+        <h6>lieux:</h6> {{ lieux  }}<br>
+
+        <h6>telephone:</h6> {{ n_tel }}<br>
+        <h6>description:</h6> {{ description }}<br>
+
+
+
+    <br><br>
+
+   {% endblock %}

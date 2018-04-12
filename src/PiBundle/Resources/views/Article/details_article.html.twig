@@ -1,0 +1,83 @@
+{% extends "::base.html.twig" %}
+
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+{% endblock %}
+{% block body %}
+
+    <!-- SECTION BG INTRO -->
+    <!--===============================================================-->
+    <div class="section-blog-photo-intro">
+        <div class="opacity-layer section section-blog-photo-intro-height">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION MAIN -->
+    <!--===============================================================-->
+    <div class="container">
+        <div class="row row-wrapper-posts-intro">
+            <!-- GRID POSTS -->
+            <!--===============================================================-->
+            <div class="col-md-8 col-md-offset-2 grid-posts grid-posts-intro">
+                <!-- POST -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="wrapper-post-v1">
+                            <div class="wrapper-post-text text-theme-lg">
+                                <h3 class="title-xl text-uppercase text-theme-lg"><a href="#">{{ titre }}</a></h3>
+                                <ul class="list-unstyled list-inline post-date-author text-theme-lg">
+                                    <li>
+                                        <a href="#"><i class="fa fa-comment-o"></i>Admin</a>
+                                    </li>
+                                    <li>
+                                        <a class="link-colored" href="#"><i class="fa fa-tag"></i>{{ categorie }} vues</a>
+                                    </li>
+                                    <li>
+                                        <a class="link-colored" href="#"><i class="glyphicon glyphicon-eye-open"></i>{{ nbr_vue }} vues</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-calendar"></i>{{ dateCreation |join('-')}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#" class="text-theme-lg display-block mb-20">
+                                <img src="{{ asset("assets/images/general/blog-3.jpg") }}" class="img-responsive full-width img-featured" alt="img-theme">
+                            </a>
+                            <p>{{ contenu }}
+                            </p>
+                            <div class="section-header text-center">
+                                <div class="row">
+                                    <a class="btn btn-primary" href="{{ path('pdf_article',{'categorie':categorie,'titre':titre,'contenu':contenu,'note':note,'dateCreation':dateCreation,'nbr_vue':nbr_vue}) }}" class="btn" >Get it PDF</a>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="row">
+                                    <p>Partager avec vos amis cet article sur:</p>
+                                    {{ socialButtons() }}
+                                </div>
+                                <br>
+                                <br>
+                                <div class="row">
+                                <a href="{{  path('liste_article')}}" class="text-theme btn btn-primary btn-md">Retour</a>
+                                </div>
+                            </div>
+                            <br>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

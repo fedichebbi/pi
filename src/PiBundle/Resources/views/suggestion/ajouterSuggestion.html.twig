@@ -1,0 +1,48 @@
+{% extends "::baseAdmin.html.twig" %}
+
+
+{% block body %}
+
+
+<form method="post">
+    <fieldset>
+        <legend>Ajouter Suggestion </legend>
+        <table>
+            <tr>
+                <td>nom</td>
+
+                <td>
+
+                        <input class="form-control" name="nom" type="text"  placeholder="nom" required>
+                    </td>
+            </tr>
+            <tr>
+                <td>Adresse</td>
+                <td><input class="form-control" name="adresse" type="text"  placeholder="adresse" required></td>
+            </tr>
+            <tr>
+                <td>Horaire</td>
+                <td><input class="form-control" name="horaire" type="text"  placeholder="horaire" required></td>
+            </tr>
+            <tr>
+                <td>Telephone</td>
+                <td><input class="form-control" name="telephone" type="text"  placeholder="telephone" required></td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td> <select name="type" class="form-control">
+                        <option value="Festival">Festival</option>
+                        <option value="Event">Event</option>
+                    </select></td>
+            </tr>
+
+
+            <tr>
+                <br><br>
+                <td><button type="submit" class="btn btn-primary" formaction="AjouterSuggestion">Valider</button></td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
+
+{% endblock %}

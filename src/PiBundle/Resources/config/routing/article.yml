@@ -1,0 +1,82 @@
+pi_homepage:
+    path:     /
+    defaults: { _controller: PiBundle:Default:index }
+pi_homepageAdmin:
+    path:     /dashboard
+    defaults: { _controller: PiBundle:Default:indexAdmin }
+ajouter_article:
+    path:     /ajouterArticle
+    defaults: { _controller: PiBundle:Article:ajouterArticle }
+modifier_article:
+    path:     /modifierArticle{id}
+    defaults: { _controller: PiBundle:Article:modifierArticle }
+supprimer_article:
+    path:     /supprimerArticle{id}
+    defaults: { _controller: PiBundle:Article:supprimerArticle }
+liste_article:
+    path:     /listeArticle
+    defaults: { _controller: PiBundle:Article:listeArticle }
+liste_articleAdmin:
+    path:     /listeArticleAdmin
+    defaults: { _controller: PiBundle:Article:listeArticleAdmin }
+details_articleAdmin:
+    path:     /detailsArticleAdmin
+    defaults: { _controller: PiBundle:Article:detailsArticleAdmin }
+pdf_article:
+    path:     /pdf
+    defaults: { _controller: PiBundle:Article:pdf }
+details_article:
+    path:     /detailsArticle{id}
+    defaults: { _controller: PiBundle:Article:detailsArticle }
+
+rechercher_article:
+    path:     /rechercherArticle
+    defaults: { _controller: PiBundle:Article:rechercherArticle }
+ajouter_conseil:
+    path:     /ajouterConseil
+    defaults: { _controller: PiBundle:ConseilE:ajouterConseil }
+afficher_conseil:
+    path:     /afficherConseil
+    defaults: { _controller: PiBundle:ConseilE:afficherConseil }
+afficher_conseil_categorie:
+    path:     /affichercateorieConseil
+    defaults: { _controller: PiBundle:ConseilE:affichercateorieConseil }
+afficher_conseil_Pediatre:
+    path:     /afficherPediatreConseil
+    defaults: { _controller: PiBundle:ConseilE:afficherPediatreConseil }
+afficher_conseil_Gynecologue:
+    path:     /afficherGynecologueConseil
+    defaults: { _controller: PiBundle:ConseilE:afficherGynecologueConseil }
+afficher_conseil_Nutritionniste:
+    path:     /afficherNutritionnisteConseil
+    defaults: { _controller: PiBundle:ConseilE:afficherNutritionnisteConseil }
+afficher_conseil_Sexologue:
+    path:     /afficherSexologueConseil
+    defaults: { _controller: PiBundle:ConseilE:afficherSexologueConseil }
+afficher_conseil_Psycholoue:
+    path:     /afficherPsychologueConseil
+    defaults: { _controller: PiBundle:ConseilE:afficherPsychologueConseil }
+afficher_conseilAdmin:
+    path:     /afficherConseilAdmin
+    defaults: { _controller: PiBundle:ConseilE:afficherConseilAdmin }
+afficher_conseilExpert:
+    path:     /afficherConseilExpert
+    defaults: { _controller: PiBundle:ConseilE:afficherConseilExpert }
+details_conseil:
+    path:     /detailsConseil
+    defaults: { _controller: PiBundle:ConseilE:detailsConseil }
+details_conseilAdmin:
+    path:     /detailsConseilAdmin
+    defaults: { _controller: PiBundle:ConseilE:detailsConseilAdmin }
+details_conseilExpert:
+    path:     /detailsConseilExpert
+    defaults: { _controller: PiBundle:ConseilE:detailsConseilExpert }
+modifier_conseil:
+    path:     /modifierConseil{id}
+    defaults: { _controller: PiBundle:ConseilE:modifierConseil }
+rechercher_conseil:
+    path:     /rechercherConseil
+    defaults: { _controller: PiBundle:ConseilE:rechercherConseil }
+supprimer_conseil:
+    path:     /supprimerConseil{id}
+    defaults: { _controller: PiBundle:ConseilE:supprimerConseil }

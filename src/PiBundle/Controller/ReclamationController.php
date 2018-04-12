@@ -48,13 +48,13 @@ class ReclamationController extends Controller
             $em->flush();
             $total=$this->calculReclamations($Topic);
         $reclamation=$em->getRepository('PiBundle:Reclamation')->getbyRecUser($Topic->getId(),$user->getId());
-            if($total[0][1]<4)
+            if($total[0][1]<3)
         return $this->redirectToRoute('topic_show',array(
             "id"=>$topic,
             "count"=>$this->calculReclamations($Topic),
             "reclamation"=>$reclamation
         ));
-           else if ($this->calculReclamations($Topic)>3)
+           else if ($this->calculReclamations($Topic)>2)
             {
                 $em->remove($Topic);
                 $em->flush();

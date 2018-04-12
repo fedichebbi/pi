@@ -1,0 +1,72 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+    <!-- SECTION BG INTRO -->
+    <!--===============================================================-->
+    <div class="section-blog-photo-intro">
+        <div class="opacity-layer section section-blog-photo-intro-height">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION MAIN -->
+    <!--===============================================================-->
+    <div class="container">
+        <div class="row row-wrapper-posts-intro">
+            <!-- GRID POSTS -->
+            <!--===============================================================-->
+            <div class="col-md-8 col-md-offset-2 grid-posts grid-posts-intro">
+                <!-- POST 1 -->
+    {% for article in pagination %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="wrapper-post-v1">
+                            <div class="wrapper-post-text text-theme-lg">
+                                <h3 class="title-xl text-uppercase text-theme-lg"><a href="#">{{ article.titre }}</a></h3>
+                                <ul class="list-unstyled list-inline post-date-author text-theme-lg">
+                                    <li>
+                                        <a href="#"><i class="fa fa-comment-o"></i>Admin</a>
+                                    </li>
+                                    <li>
+                                        <a class="link-colored" href="#"><i class="fa fa-tag"></i>{{ article.categorie }}</a>
+                                    </li>
+                                    <li>
+                                        <a class="link-colored" href="#"><i class="glyphicon glyphicon-eye-open"></i>{{ article.nbr_vue }} Vues</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-calendar"></i>{{ article.dateCreation |date('Y-m-d')}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#" class="text-theme-lg display-block">
+                                <img src="{{ asset("assets/images/general/blog-3.jpg") }}" class="img-responsive full-width img-featured" alt="img-theme">
+                            </a>
+                            <p>Pour lire cet article cliquer sur "Lire"
+                            </p>
+                            <a href="{{  path('details_article',{'id':article.idArticle,'categorie':article.categorie,'titre':article.titre,'contenu':article.contenu,'note':article.note,'dateCreation':article.dateCreation,'nbr_vue':article.nbr_vue})}}" class="text-theme btn btn-primary btn-md">Lire</a>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+
+                <!-- PAGINTAION -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="pagination pagination-lg">
+
+                           {{ knp_pagination_render(pagination) }}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- POSTS GRID END -->
+            <!--===============================================================-->
+        </div>
+    </div>
+{% endblock %}

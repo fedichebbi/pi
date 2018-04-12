@@ -43,12 +43,21 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-5 hidden-xs">
-                            <a class="title-menu-top display-inline-block" href="mailto:support@example.com">support@example.com</a>
+
                         </div>
                         <div class="col-sm-7 col-xs-12">
                             <div class="pull-right">
                                 <div class="dropdown dropdown-login pull-left">
-                                    <button class="btn-menu-top" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Log in</button>
+                                    {% if app.user %}
+                                        <a href="http://localhost/pi/web/app_dev.php/logout">
+                                            <button class="btn-menu-top" id="dLabel" type="button"  aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>Se déconnecter</button>
+                                        </a>
+                                    {% else %}
+                                        <a href="http://localhost/pi/web/app_dev.php/login">
+                                        <button class="btn-menu-top" id="dLabel" type="button"  aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>Se connecter</button>
+                                        </a>
+                                    {% endif %}
+
                                     <div class="dropdown-menu dropdown-menu-right stop-prop" role="menu" aria-labelledby="dLabel">
                                         <div class="wrapper-form-box">
                                             <h3>Log In</h3>
@@ -72,7 +81,6 @@
                                     </div>
                                 </div>
                                 <div class="dropdown dropdown-cart pull-left">
-                                    <button class="btn-menu-top hidden-xs" id="dShop" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shopping-cart"></i> Cart (3)</button>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-cart stop-prop" role="menu" aria-labelledby="dShop">
                                         <div class="panel-shopping-cart">
                                             <table class="table">
@@ -87,7 +95,7 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <td class="table-first"><img class="img-responsive" src="{{ asset("assets/images/general/imac.png") }}" alt="theme-img"></td>
+                                                    <td class="table-first"><img class="img-responsive" src="{{ asset("assets/images/general/children.png") }}" alt="theme-img"></td>
                                                     <td><span class="title">Apple iMac 21.5</span></td>
                                                     <td><input type="text" class="form-control" maxlength="3" value="1"></td>
                                                     <td><span>$1249</span></td>
@@ -146,7 +154,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index-2.html"><span class="logo-circle"><span class="logo-circle-outer"></span></span><img class="img-responsive" src="{{ asset("assets/images/logo/logo-default.png") }}" alt="theme-img"></a>
+                    <a class="navbar-brand" href="index-2.html"><span class="logo-circle-outer"></span></span><img class="img-responsive" src="{{ asset("assets/images/logo/child-icon.png") }}" alt="theme-img"></a>
                 </div>
 
                 <div id="navbar" class="navbar-collapse collapse">
@@ -170,103 +178,19 @@
                         </li>
 
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pages</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services</a>
                             <ul class="dropdown-menu dropdown-menu-left" role="menu">
 
                                 <li class="dropdown-submenu">
-                                    <a href="#">About Us</a>
+                                    <a href="{{ path("afficher_suggestion") }}">Nos Suggestions</a></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="about-us-option-1.html">Option-1 - About Us</a></li>
-                                        <li><a href="about-us-option-2.html">Option-2 - About Us</a></li>
+                                        <li><a href="{{ path("dqlAffichageEvent") }}">Evenements</a></li>
+                                        <li><a href="{{ path("dqlAffichageFestival") }}">Festivales</a></li>
                                     </ul>
                                 </li>
-
                                 <li class="dropdown-submenu">
-                                    <a href="#">Services</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="services-option-1.html">Option-1 - Services</a></li>
-                                        <li><a href="services-option-2.html">Option-2 - Services</a></li>
-                                    </ul>
+                                    <a href="{{ path("afficher_babysitter_date") }}">Nos Babysitter</a></a>
                                 </li>
-
-                                <li class="dropdown-submenu">
-                                    <a href="#">Contact Us</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="contact-us-option-1.html">Option-1 - Contact Us</a></li>
-                                        <li><a href="contact-us-option-2.html">Option-2 - Contact Us</a></li>
-                                        <li><a href="contact-us-option-3.html">Option-3 - Contact Us</a></li>
-                                        <li><a href="contact-us-option-4.html">Option-4 - Contact Us</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown-submenu">
-                                    <a href="#">Log in - Register</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="register-option-1.html">Option-1 - Register</a></li>
-                                        <li><a href="login-option-1.html">Option-1 - Log in</a></li>
-                                        <li><a href="register-login-option-1.html">Option-1 - Register - Log in</a></li>
-                                        <li><a href="register-option-2.html">Option-2 - Register</a></li>
-                                        <li><a href="login-option-2.html">Option-2 - Log in</a></li>
-                                        <li><a href="register-login-option-2.html">Option-3 - Register - Log in</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown-submenu">
-                                    <a href="#">Coming Soon</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="coming-soon-option-1.html">Option-1 - Coming Soon</a></li>
-                                        <li><a href="coming-soon-option-2.html">Option-2 - Coming Soon</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown-submenu">
-                                    <a href="#">Timeline</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="timeline.html">Timeline Side</a></li>
-                                        <li><a href="timeline-center.html">Timeline Center</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown-submenu">
-                                    <a href="#">Error</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="404-option-1.html">Option 1 - Error</a></li>
-                                        <li><a href="404-option-2.html">Option 2 - Error</a></li>
-                                        <li><a href="404-option-3.html">Option-3 - Error</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown-submenu">
-                                    <a href="#">Sub Level - 1</a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Sub Level - 2</a></li>
-                                        <li class="dropdown-submenu">
-                                            <a href="#">Sub Level - 2</a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li class="dropdown-submenu">
-                                                    <a href="#">Sub Level - 3</a>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li><a href="#">Sub Level - 4</a></li>
-                                                        <li class="dropdown-submenu">
-                                                            <a href="#">Sub Level - 4</a>
-                                                            <ul class="dropdown-menu" role="menu">
-                                                                <li><a href="#">Sub Level-5</a></li>
-                                                                <li><a href="#">Sub Level-5</a></li>
-                                                                <li><a href="#">Sub Level-5</a></li>
-                                                            </ul>
-                                                        </li>
-                                                        <li><a href="#">Sub Level - 4</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Sub Level-3</a></li>
-                                                <li><a href="#">Sub Level-3</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Sub Level - 2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="pricetables.html">Pricing Tables</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
                             </ul>
                         </li>
 
@@ -317,12 +241,11 @@
                         </li>
 
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Boutique</a>
                             <ul class="dropdown-menu dropdown-menu-left" role="menu">
-                                <li><a href="shop.html">Shop Default</a></li>
-                                <li><a href="shop-sidebar.html">Shop Sidebar</a></li>
-                                <li><a href="shop-item.html">Shop Item</a></li>
-                                <li><a href="shop-cart.html">Shop Cart</a></li>
+                                <li><a href="{{ path("produit_indexfront") }}">Produits</a></li>
+                                <li><a href="{{ path("promotion_indexfront") }}">Promotions</a></li>
+                                <li><a href="{{ path("pi_stat") }}">Statistiques</a></li>
                             </ul>
                         </li>
 
@@ -451,30 +374,27 @@
                         </li>
 
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blog</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Lire</a>
                             <ul class="dropdown-menu dropdown-menu-left" role="menu">
-                                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                <li><a href="blog-bg-intro.html">Blog Background Intro</a></li>
-                                <li><a href="timeline-center.html">Blog Timeline</a></li>
-                                <li><a href="blog-post-option-1.html">Blog Post</a></li>
-                                <li><a href="blog-post-option-2.html">Blog Post Bg Intro</a></li>
+                                <li><a href="{{ path("liste_article") }}">Nos Articles</a></li>
+                                <li class="dropdown-submenu">
+                                    <a href="#">Conseils d'Experts</a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ path("afficher_conseil_Pediatre") }}">Pédiatre</a></li>
+                                        <li><a href="{{ path("afficher_conseil_Gynecologue") }}">Gynécologue</a></li>
+                                        <li><a href="{{ path("afficher_conseil_Nutritionniste") }}">Nutritionnite</a></li>
+                                        <li><a href="{{ path("afficher_conseil_Sexologue") }}">Sexologue</a></li>
+                                        <li><a href="{{ path("afficher_conseil_Psycholoue") }}">Psychologue</a></li>
+                                    </ul>
+                                </li>
+
                             </ul>
                         </li>
 
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Portfolio</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Topics</a>
                             <ul class="dropdown-menu dropdown-menu-left" role="menu">
-                                <li><a href="portfolio-item.html">Portfolio Item</a></li>
-                                <li><a href="portfolio-4-column.html">4 Column</a></li>
-                                <li><a href="portfolio-3-column.html">3 Column</a></li>
-                                <li><a href="portfolio-2-column.html">2 Column</a></li>
-                                <li><a href="portfolio-fluid-full-4-column.html">Fluid Full 4 Column</a></li>
-                                <li><a href="portfolio-fluid-full-3-column.html">Fluid Full 3 Column</a></li>
-                                <li><a href="portfolio-fluid-full-2-column.html">Fluid Full 2 Column</a></li>
-                                <li><a href="portfolio-fluid-4-column.html">Fluid 4 Column</a></li>
-                                <li><a href="portfolio-fluid-3-column.html">Fluid 3 Column</a></li>
-                                <li><a href="portfolio-fluid-2-column.html">Fluid 2 Column</a></li>
+                                <li><a href="{{ path("topic_index") }}">Liste des topics</a></li>
                             </ul>
                         </li>
 
@@ -502,8 +422,8 @@
             <div class="row">
                 <div class="col-sm-3 col-xs-12">
                     <div class="logo-footer text-theme">
-                        <span class="logo-circle-footer"><span class="logo-circle-outer-footer"></span></span>
-                        <img src="{{ asset("assets/images/logo/logo-footer.png") }}" alt="theme-img">
+
+
                     </div>
                     <p class="text-theme">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sit amet consectetur massa, in efficitur justo aliquam.</p>
                     <div class="text-theme">

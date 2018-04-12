@@ -1,0 +1,41 @@
+{% extends "::baseAdmin.html.twig" %}
+
+
+{% block body %}
+{{ form_start(Form) }}
+
+<table>
+    <tr>
+        <td>Date disponibilité :</td>
+        <td>{{ form_widget(Form.dateDispo) }}</td>
+    </tr>
+    <tr>
+        <td>horaire :</td>
+        <td>{{ form_widget(Form.horaire) }}</td>
+    </tr>
+    <tr>
+        <td>lieux :</td>
+        <td>{{ form_widget(Form.lieux) }}</td>
+    </tr>
+    <tr>
+        <td>Salaire :</td>
+        <td>{{ form_widget(Form.prix) }}</td>
+    </tr>
+    <tr>
+        <td>Numero de telephone :</td>
+        <td>{{ form_widget(Form.nTel) }}</td>
+    </tr>
+    <tr>
+        <td>Description :</td>
+        <td>{{ form_widget(Form.description) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_widget(Form.valider) }}</td>
+    </tr>
+</table>
+
+
+{{ form_end(Form) }}
+
+
+{% endblock %}

@@ -13,6 +13,7 @@
                         <th>Type</th>
                         <th>Date</th>
                         <th>Par</th>
+                        <th>Supprimer</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -21,6 +22,7 @@
                         <th>Type</th>
                         <th>Date</th>
                         <th>Par</th>
+                        <th>Supprimer</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -30,6 +32,32 @@
                         <td>{{ topic.type }}</td>
                         <td>{{ topic.date|date('Y-m-d H:i:s') }}</td>
                         <td>{{ topic.idUser }}</td>
+                        <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">
+                                Supprimer
+                            </button>
+                        </td>
+                        <!-- Modal -->
+
+                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Suppression</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Voulez vous supprimer ce topic?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                        <a href="{{ path('topic_delete',{'id':topic.id}) }}"><input type="button"  class="btn btn-primary" value="valider"></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
                     {% endfor %}
                     </tbody>

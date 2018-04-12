@@ -1,0 +1,51 @@
+{% extends "::baseAdmin.html.twig" %}
+{% block title %}PiBundle:Article:detailsArticle{% endblock %}
+
+{% block body %}
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Details Article</li>
+</ol>
+<!-- Example DataTables Card-->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-pagelines"></i>Article</div>
+    <div class="card-body">
+
+        <form >
+            <fieldset>
+                <legend>Details</legend>
+                <table>
+                    <tr>
+                        <td>Catégorie: </td>
+                        <td><p>{{ categorie }}</p></td><br>
+                    </tr>
+                    <tr>
+                        <td>Titre :  </td>
+                        <td><p>{{ titre }}</p> </td><br>
+                    </tr>
+                    <tr>
+                        <td>Nombre des vues :  </td>
+                        <td><p>{{ nbr_vue }}</p></td><br>
+                    </tr>
+    <tr>
+        <td>Contenue : </td>
+        <td><p>{{ contenu }}</p></td><br>
+    </tr>
+
+    <tr>
+        <td>Date Création : </td>
+        <td>{{ dateCreation |join('-')}}</td><br>
+    </tr>
+                </table>
+            </fieldset>
+            <a href="{{ path('liste_articleAdmin') }}"><input class="btn btn-secondary" type="button" value="Retour"></a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

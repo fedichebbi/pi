@@ -1,0 +1,75 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+
+
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i>Afficher liste des videos</div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+
+
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+    <th>id</th>
+    <th>titre</th>
+    <th>Video</th>
+    <th>date</th>
+    <th>Modifier</th>
+    <th>Supprimer</th>
+    <th>details</th>
+    </thead>
+    <tbody>
+
+    {% for vdo in videos %}
+        <tr>
+            <td>{{ vdo.id }}</td>
+            <td>{{ vdo.titre }}</td>
+            <td><img src="{{ asset('videos/' ~ vdo.nomVideo)}}" style="width: 100px;height: 100px"><br><a href="{{ path('video_lire',{'id': vdo.id}) }}"> Lire Video</a><img src="{{ asset('css/media.png')}}" width="30px" height="30px"></td>
+            <td>{{ vdo.date|date }}</td>
+            <td><a href="{{ path('video_edit', {'id': vdo.id}) }}"> Modifier </a> </td>
+
+            <td><a href="{{ path('video_supp',{'id': vdo.id}) }}" onclick="return validation();" >Supprimer </a></td>
+            <td><a href="{{ path('question_detail', {'id': vdo.id}) }}"> Détails Question </a> </td>
+
+        </tr>
+    {% endfor %}
+    <a href="{{ path('video_new') }}"> Ajouter  </a>
+    <script src="dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+
+        function validation() {
+            swal({
+                    title: "vous ete sur de vouloir supprimer la video?",
+                    text: "cette operation n est pas ratrappable!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "oui, supprimer!",
+                    cancelButtonText: "Non, ne supprimer pas!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+
+                function(isConfirm) {
+                    if (isConfirm) {
+                        swal("effacer!", "video est supprimer.", "success");
+                    } else {
+                        swal("arreter", "le fichier est encore la :)", "error");
+                    }
+                });
+        }
+    </script>
+    </tbody>
+</table>
+         </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+
+        </div>
+</div>
+{% endblock %}

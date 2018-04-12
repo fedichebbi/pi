@@ -1,0 +1,39 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block body %}
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i>Afficher liste des reponses</div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <th>text</th>
+                    <th>correction</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                    </thead>
+                    <tbody>
+
+                    {% for rep in reponses %}
+                        <tr>
+                            <td>{{ rep.text }}</td>
+                            <td>{{ rep.correction }}</td>
+                            <td><a href="{{ path('reponse_edit', {'id': rep.id}) }}">Modifier </a> </td>
+                            <td><a href="{{ path('reponse_supp',{'id': rep.id}) }}" >Supprimer</a></td>
+                        </tr>
+                    {% endfor %}
+                        <a href="{{ path('reponse_new', {'id': id}) }}"> Ajouter  </a>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -36,11 +36,78 @@ class Reponce
     private $correction;
 
     /**
-     * @var integer
+     * @var Question
      *
-     * @ORM\Column(name="id_question", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Question")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idQuestion", referencedColumnName="id")
+     * })
      */
     private $idQuestion;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * @param string $text
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCorrection()
+    {
+        return $this->correction;
+    }
+
+    /**
+     * @param string $correction
+     */
+    public function setCorrection($correction)
+    {
+        $this->correction = $correction;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdQuestion()
+    {
+        return $this->idQuestion;
+    }
+
+    /**
+     * @param int $idQuestion
+     */
+    public function setIdQuestion($idQuestion)
+    {
+        $this->idQuestion = $idQuestion;
+    }
 
 
 }

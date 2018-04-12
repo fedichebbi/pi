@@ -1,0 +1,193 @@
+{% extends "::baseAdmin.html.twig" %}
+
+
+{% block body %}
+<!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Tables</li>
+            </ol>
+            <!-- Example DataTables Card-->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fa fa-table"></i>Liste des Articles
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+
+                        <a href="{{ path('ajouter_article') }}"><input class="btn btn-primary " type="button" value="Nouveau article"></a>
+                    </div>
+
+                        <br>
+                    <form>
+                    <div class="input-group">
+                        <span class="input-group-append">
+                        <input class="form-control" name="searchbar" id="searchbar" type="text" placeholder="Recherhce par catégorie...">
+
+
+                 <button class="btn btn-primary" type="button"> <i class="fa fa-search"></i></button>
+
+              </span>
+                    </div>
+                    </form>
+                    <br>
+                    <div class="count">
+                        Vous avez : {{ pagination.getTotalItemCount }} articles
+                    </div>
+                    <div class="table-responsive">
+
+
+                                  <table class="table table-bordered" id="" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Categorie</th>
+                                <th>Titre</th>
+                                <th>Contenue</th>
+                                <th>Nombre de vue</th>
+                                <th>Date création</th>
+                                <th>Supprimer<th>Modifier</th></th><th>Details</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Categorie</th>
+                                <th>Titre</th>
+                                <th>Contenue</th>
+                                <th>Nombre de vue</th>
+                                <th>Date création</th>
+                                <th>Supprimer<th>Modifier</th></th><th>Details</th>
+                            </tr>
+                            </tfoot>
+                             <tbody class="grid" id="div" name ="div">
+
+                             </tbody>
+                            <tbody class="grid" id="aff" name="aff">
+                            {% for article in pagination %}
+                            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                                <td name="categorie" id="categorie">{{ article.categorie }}</td>
+                                <td>{{ article.titre }}</td>
+                                <td>Pour voir le contenu de cet article cliquer detail</td>
+                                <td>{{ article.nbr_vue }}</td>
+                                <td>{{ article.dateCreation |date('Y-m-d')}}</td>
+                                <td>
+
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#supprimerModal">
+                                        Supprimer
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="supprimerModal" tabindex="-1" role="dialog" aria-labelledby="supprimerModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="supprimerModalLabel">Supprimer cet article?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Voulez vous Supprimer cet article?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                    <a href="{{ path('supprimer_article',{'id':article.idArticle}) }}">
+                                                        <input class="btn btn-primary " type="button" value="Supprimer">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td><a href="{{ path('modifier_article',{'id':article.idArticle}) }}"><input class="btn btn-primary btn-block" type="button" value="Modifier"></a></td>
+                                <td><a class="btn btn-primary btn-block"  href="{{  path('details_articleAdmin',{'categorie':article.categorie,'titre':article.titre,'contenu':article.contenu,'nbr_vue':article.nbr_vue,'dateCreation':article.dateCreation})}}">detail</a></td>
+
+
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                                <div class="pagination justify-content-center">
+
+                                        <div class="page-item">
+                                            {{ knp_pagination_render(pagination) }}</div>
+
+                                </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+
+    <script src="{{ asset("jquery.js") }}"></script>
+    <script>
+        $("#searchbar").keyup(
+            function () {
+                var   categorie=$('#searchbar').val();
+
+                var DATA ='categorie='+categorie;
+                var i=0;
+                $.ajax({
+
+                    type:"POST",
+                    url:"{{ path('rechercher_article') }}",
+                    data: DATA,
+                    success: function (data) {
+                        console.log("data**");
+                        console.log(data);
+                        //language=HTML
+
+                        $.each(data,function (k, el) {
+                                $("#aff").hide();
+                                $("#res").append(
+                                    $("#div").html( "<tr>"+
+                                    "<td>"+
+                                        el.categorie+
+                                    "</td>"+
+                                    "<td>"+
+                                    el.titre+
+                                    "</td>"+
+                                    "<td>"+
+                                    el.contenu+
+                                    "</td>"+
+                                    "<td>"+
+                                    el.note+
+                                    "</td>"+
+                                    "<td>"+
+                                    el.dateCreation+
+                                    "</td>"+
+                                    "<td>"+
+                                    "</td>"+
+                                    "<td>"+
+                                    "</td>"+
+
+
+                                   "</tr>"
+
+                                    )
+
+                                );
+                            }
+
+
+                        );
+                    },
+                    error:function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
+                });            }
+        );
+
+
+    </script>
+{% endblock %}

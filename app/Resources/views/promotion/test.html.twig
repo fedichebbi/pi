@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+<img id="h" src="{{ asset('smiley/h2.png') }}">
+<img id="n" src="{{ asset('smiley/n2.png') }}">
+<img id="s" src="{{ asset('smiley/s2.png') }}">
+
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+
+<script>
+    $('#h').on({
+        'click': function(){
+            $('#h').attr('src','{{ asset('smiley/h1.png') }}');
+            $('#n').attr('src','{{ asset('smiley/n2.png') }}');
+            $('#s').attr('src','{{ asset('smiley/s2.png') }}');
+
+            $.ajax({
+                url:'{{ (path('rate')) }}',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "some_var_name": "3"
+                },
+                async: true,
+                success: function (data)
+                {
+                    alert("echrili sigarouuu hhhh");
+
+
+                }
+            });
+        }
+    });
+    $('#n').on({
+        'click': function(){
+            $('#h').attr('src','{{ asset('smiley/h2.png') }}');
+            $('#n').attr('src','{{ asset('smiley/n1.png') }}');
+            $('#s').attr('src','{{ asset('smiley/s2.png') }}');
+
+            $.ajax({
+                url:'{{ (path('rate')) }}',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "some_var_name": "2"
+                },
+                async: true,
+                success: function (data)
+                {
+                    alert("echrili sigarouuu hhhh");
+
+
+                }
+            });
+        }
+    });
+    $('#s').on({
+        'click': function(){
+            $('#h').attr('src','{{ asset('smiley/h2.png') }}');
+            $('#n').attr('src','{{ asset('smiley/n2.png') }}');
+            $('#s').attr('src','{{ asset('smiley/s1.png') }}');
+            $.ajax({
+                url:'{{ (path('rate')) }}',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "some_var_name": "0"
+                },
+                async: true,
+                success: function (data)
+                {
+                    alert("echrili sigarouuu hhhh");
+
+
+                }
+            });
+        }
+    });
+
+
+
+</script>
+</body>
+
+</html>
+
+
+

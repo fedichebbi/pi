@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Promotions list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>produit</th>
+            <th>Datefin</th>
+            <th>prix ancien</th>
+            <th>Nouvprix</th>
+            <th>Remise</th>
+            <th>Actions</th>
+            <th>Notez</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for promotion in promotions %}
+            <tr>
+                <td>{{ promotion.produit.nom }}</td>
+                <td>{% if promotion.dateFin %}{{ promotion.dateFin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ promotion.produit.prix }}</td>
+                <td>{{ promotion.nouvPrix }}</td>
+                <td>{{ promotion.remise }}</td>
+                <td><img id="{{ promotion.id }}h" src="{{ asset('smiley/h2.png') }}">
+                    <img id="{{ promotion.id }}n" src="{{ asset('smiley/n2.png') }}">
+                    <img id="{{ promotion.id }}s" src="{{ asset('smiley/s2.png') }}">
+                    <script src="{{ asset('js/jquery.min.js') }}"></script>
+
+                    <script>
+                        $('#{{ promotion.id }}h').on({
+                            'click': function(){
+                                $('#{{ promotion.id }}h').attr('src','{{ asset('smiley/h1.png') }}');
+                                $('#{{ promotion.id }}n').attr('src','{{ asset('smiley/n2.png') }}');
+                                $('#{{ promotion.id }}s').attr('src','{{ asset('smiley/s2.png') }}');
+
+                                $.ajax({
+                                    url:'{{ (path('rate')) }}',
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: {
+                                        "some_var_name": "3",
+                                        "id": {{ promotion.id }}
+                                    },
+                                    async: true,
+                                    success: function (data)
+                                    {
+
+
+                                    }
+                                });
+                            }
+                        });
+                        $('#{{ promotion.id }}n').on({
+                            'click': function(){
+                                $('#{{ promotion.id }}h').attr('src','{{ asset('smiley/h2.png') }}');
+                                $('#{{ promotion.id }}n').attr('src','{{ asset('smiley/n1.png') }}');
+                                $('#{{ promotion.id }}s').attr('src','{{ asset('smiley/s2.png') }}');
+
+                                $.ajax({
+                                    url:'{{ (path('rate')) }}',
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: {
+                                        "some_var_name": "2",
+                                        "id": {{ promotion.id }}
+
+                                    },
+                                    async: true,
+                                    success: function (data)
+                                    {
+
+
+                                    }
+                                });
+                            }
+                        });
+                        $('#{{ promotion.id }}s').on({
+                            'click': function(){
+                                $('#{{ promotion.id }}h').attr('src','{{ asset('smiley/h2.png') }}');
+                                $('#{{ promotion.id }}n').attr('src','{{ asset('smiley/n2.png') }}');
+                                $('#{{ promotion.id }}s').attr('src','{{ asset('smiley/s1.png') }}');
+                                $.ajax({
+                                    url:'{{ (path('rate')) }}',
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: {
+                                        "some_var_name": "0",
+                                        "id": {{ promotion.id }}
+
+                                    },
+                                    async: true,
+                                    success: function (data)
+                                    {
+
+
+                                    }
+                                });
+                            }
+                        });
+
+
+
+                    </script></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('promotion_showfront', { 'id': promotion.id }) }}">show</a>
+                        </li>
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

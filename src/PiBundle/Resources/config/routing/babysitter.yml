@@ -1,0 +1,73 @@
+pi_homepage:
+    path:     /
+    defaults: { _controller: PiBundle:Default:index }
+
+ajouter_babysitter:
+    path:     Ajouter
+    defaults: { _controller: PiBundle:babysitter:Ajouter }
+    methods: [GET,POST]
+ajouter2:
+    path:     Ajouter2
+    defaults: { _controller: PiBundle:babysitter:Ajouter2 }
+afficher_babysitter_date:
+    path:     dqlAffichagePardate
+    defaults: { _controller: PiBundle:babysitter:dqlAffichagePardate }
+afficher_babysitter:
+    path:     Afficher
+    defaults: { _controller: PiBundle:babysitter:Afficher }
+afficher_babysitter_Admin:
+    path:     AfficherAdmin
+    defaults: { _controller: PiBundle:babysitter:AfficherbbAdmin }
+afficher_babysitter_Admin_liste:
+    path:     Afficherbb
+    defaults: { _controller: PiBundle:babysitter:AfficherbblisteAdmin }
+afficher_suggestion_Admin_liste:
+    path:     AfficherSS
+    defaults: { _controller: PiBundle:Suggestion:AfficherSSlisteAdmin }
+_delete:
+    path:     Deletebb{id}
+    defaults: { _controller: PiBundle:babysitter:Deletebb }
+_update:
+    path:     updatebb{id}
+    defaults: { _controller: PiBundle:babysitter:updatebb }
+detail:
+    path:     detail
+    defaults: { _controller: PiBundle:babysitter:detail }
+detail_admin:
+    path:     detailAdmin
+    defaults: { _controller: PiBundle:babysitter:detailAdmin }
+afficher_suggestion:
+    path:     AfficherSuggestion
+    defaults: { _controller: PiBundle:Suggestion:Afficher }
+ajouterSuggestion:
+    path:     AjouterSuggestion
+    defaults: { _controller: PiBundle:Suggestion:AjouterSuggestion }
+ajouter2Suggestion:
+    path:     Ajouter2Suggestion
+    defaults: { _controller: PiBundle:Suggestion:Ajouter2 }
+
+deleteSuggestion:
+    path:     DeleteSuggestion{id}
+    defaults: { _controller: PiBundle:Suggestion:DeleteSuggestion }
+
+_updateSuggestion:
+    path:     updateSuggestion{id}
+    defaults: { _controller: PiBundle:Suggestion:updateSuggestion }
+detailSuggestion:
+    path:     detailSuggestion
+    defaults: { _controller: PiBundle:Suggestion:detailSuggestion }
+detailSuggestion_admin:
+    path:     detailSuggestionAdmin
+    defaults: { _controller: PiBundle:Suggestion:detailSuggestionAdmin }
+rechercherDQL:
+    path:     rechercherDQL
+    defaults: { _controller: PiBundle:Suggestion:rechercherDQL }
+dqlAffichageFestival:
+    path:     dqlAffichageFestival
+    defaults: { _controller: PiBundle:Suggestion:dqlAffichageFestival }
+dqlAffichageEvent:
+    path:     dqlAffichageEvent
+    defaults: { _controller: PiBundle:Suggestion:dqlAffichageEvent }
+RechercherdqlSuggestion:
+    path:     RechercherdqlSuggestion
+    defaults: { _controller: PiBundle:Suggestion:RechercherdqlSuggestion }

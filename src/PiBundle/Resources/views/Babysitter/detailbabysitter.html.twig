@@ -1,0 +1,87 @@
+{% extends "::base.html.twig" %}
+
+
+{% block body %}
+    <!-- SECTION -->
+
+
+
+
+
+    <!--===============================================================-->
+    <div class="section-heading-page mb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="heading-page text-center-xs">DetailsBabysitter</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb text-right text-center-xs">
+                        <li>
+                            <a href="#">Nos services</a>
+                        </li>
+                        <li>
+                            <a href="#">Nos Babysitter</a>
+                        </li>
+                        <li class="active">Details BabySitter</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION -->
+    <div class="agile_map">
+        <iframe
+                width="1500"
+                height="400"
+                frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAEErM0rvZPtEigC1c5TzVPiIoO9MBXy3Q&q={{ lieux }}" allowfullscreen>
+        </iframe>
+    </div>
+    <!--===============================================================-->
+
+    <div class="section section-sm section-both">
+        <div class="container">
+            <div class="row">
+
+
+
+                <div class="col-md-5 col-md-offset-1">
+                    <h3 class="title-md text-theme hr-left">Plus de detail</h3>
+                    <p class="text-theme lead">Description :{{ description }}</p>
+                    <h3 class="title-md text-theme">Heure :{{ horaire }}</h3>
+                    <ul class="list-unstyled list-md text-theme">
+                        <li><i class="fa fa-map-marker fa-box"></i>{{ lieux  }}</li>
+                        <li><i class="fa fa-phone fa-box"></i>{{ n_tel }}</li>
+                        <li><i class="fa fa-envelope fa-box"></i>AllForKids@gmail.com</li>
+                    </ul>
+                    <h3 class="title-md text-theme">Date disponibilité</h3>
+                    <ul class="list-unstyled list-md text-theme">
+                        <li><i class="fa fa-clock-o fa-box"></i>{{ date_dispo |join ('-')}}</li>
+                    </ul>
+                </div>
+                {{ facebookButton()}}
+
+                {{ twitterButton()}}
+
+                {{ googleplusButton()}}
+
+                {{ linkedinButton()}}
+            </div>
+
+        </div>
+
+    </div>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','../../../www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-59515546-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+{% endblock %}

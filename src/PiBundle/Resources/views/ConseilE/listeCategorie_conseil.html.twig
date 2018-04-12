@@ -1,0 +1,56 @@
+{% extends "::base.html.twig" %}
+
+
+{% block body %}
+    <div class="wrapper-body">
+        <!-- SECTION HEADING -->
+        <!--===============================================================-->
+        <div class="section-heading-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1 class="heading-page text-center-xs">Conseils Experts Par Catégorie</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb text-right text-center-xs">
+                            <li>
+                                <a href="#">Lire</a>
+                            </li>
+                            <li>
+                                <a href="#">Conseils Experts</a>
+                            </li>
+                            <li class="active">Categories des conseils</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION -->
+        <!--===============================================================-->
+        <div class="section section-xs section-bottom">
+            <div class="container">
+
+                <!-- PORTFOLIO GALLERY CONTAINER-->
+                <div id="container-mixitup">
+                    <div class="row">
+
+                        <div class="mix photography all col-sm-6 col-xs-12">
+                            <a href="{{ asset("assets/images/portfolio/lightbox.gif") }}" class="img-wrapper rounded-top">
+                                <img class="img-responsive" src="{{ asset("assets/images/photographer/portfolio/1.jpg") }}" alt="portfolio">
+                            </a>
+                            <div class="caption-portfolio text-center">
+                                <a href="{{ path('afficher_conseil_maman') }}"class="text-theme title-xs">Maman</a>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <!-- PORTFOLIO GALLERY CONTAINER END-->
+            </div>
+        </div>
+    </div>
+{% endblock %}
